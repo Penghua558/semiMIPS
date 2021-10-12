@@ -1,0 +1,118 @@
+$date
+	Sun Sep 26 10:46:25 2021
+$end
+$version
+	Icarus Verilog
+$end
+$timescale
+	1s
+$end
+$scope module aluctrl_tb $end
+$var wire 4 ! opcodeforalu [3:0] $end
+$var reg 3 " aluop [2:0] $end
+$var reg 6 # funct [5:0] $end
+$scope module dut $end
+$var wire 3 $ aluop [2:0] $end
+$var wire 6 % funct [5:0] $end
+$var reg 4 & opcodeforalu [3:0] $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+#0
+$dumpvars
+b0 &
+bx %
+b0 $
+bx #
+b0 "
+b0 !
+$end
+#5
+b1 !
+b1 &
+b1 "
+b1 $
+#9
+b101010 #
+b101010 %
+#13
+b101 !
+b101 &
+b11 "
+b11 $
+#17
+b110 !
+b110 &
+b100 "
+b100 $
+#21
+b11 !
+b11 &
+b101 "
+b101 $
+#25
+b1 !
+b1 &
+b10 "
+b10 $
+#29
+b1011 !
+b1011 &
+b0 #
+b0 %
+#33
+b1100 !
+b1100 &
+b10 #
+b10 %
+#37
+b1010 !
+b1010 &
+b11 #
+b11 %
+#41
+b0 !
+b0 &
+b100000 #
+b100000 %
+#45
+b11 !
+b11 &
+b100001 #
+b100001 %
+#49
+b1 !
+b1 &
+b100010 #
+b100010 %
+#53
+b100 !
+b100 &
+b100011 #
+b100011 %
+#57
+b101 !
+b101 &
+b100100 #
+b100100 %
+#61
+b110 !
+b110 &
+b100101 #
+b100101 %
+#65
+b111 !
+b111 &
+b100110 #
+b100110 %
+#69
+b1 !
+b1 &
+b101010 #
+b101010 %
+#73
+b100 !
+b100 &
+b101011 #
+b101011 %
+#77

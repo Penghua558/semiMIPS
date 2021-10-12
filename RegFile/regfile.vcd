@@ -1,0 +1,130 @@
+$date
+	Fri Sep 24 16:08:45 2021
+$end
+$version
+	Icarus Verilog
+$end
+$timescale
+	1s
+$end
+$scope module regfile_tb $end
+$var wire 32 ! dout2 [31:0] $end
+$var wire 32 " dout1 [31:0] $end
+$var reg 1 # clk $end
+$var reg 32 $ din [31:0] $end
+$var reg 5 % rdaddr1 [4:0] $end
+$var reg 5 & rdaddr2 [4:0] $end
+$var reg 1 ' wr $end
+$var reg 5 ( wraddr [4:0] $end
+$scope module dut $end
+$var wire 1 # clk $end
+$var wire 32 ) din [31:0] $end
+$var wire 32 * dtempout1 [31:0] $end
+$var wire 32 + dtempout2 [31:0] $end
+$var wire 5 , rdaddr1 [4:0] $end
+$var wire 5 - rdaddr2 [4:0] $end
+$var wire 1 ' wr $end
+$var wire 5 . wraddr [4:0] $end
+$var reg 32 / dout1 [31:0] $end
+$var reg 32 0 dout2 [31:0] $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+#0
+$dumpvars
+bx 0
+bx /
+bx .
+b0 -
+b0 ,
+bx +
+bx *
+b0 )
+bx (
+0'
+b0 &
+b0 %
+b0 $
+0#
+bx "
+bx !
+$end
+#2
+1#
+#4
+0#
+b101 (
+b101 .
+#5
+b11001001001001000100110101100 $
+b11001001001001000100110101100 )
+#6
+1'
+1#
+#8
+0#
+#10
+1#
+#11
+0'
+#12
+b1110 (
+b1110 .
+0#
+#13
+b1110000110010100111100000000000 $
+b1110000110010100111100000000000 )
+#14
+1'
+1#
+#16
+0#
+#18
+1#
+#19
+0'
+#20
+0#
+#21
+b1110000110010100111100000000000 "
+b1110000110010100111100000000000 /
+b1110000110010100111100000000000 *
+b1110 %
+b1110 ,
+#22
+1#
+#24
+0#
+#25
+b11001001001001000100110101100 !
+b11001001001001000100110101100 0
+b11001001001001000100110101100 +
+b101 &
+b101 -
+#26
+b101 (
+b101 .
+1#
+#27
+b1100101100010010010000111010011 $
+b1100101100010010010000111010011 )
+#28
+0#
+#30
+1#
+#31
+1'
+#32
+0#
+#34
+b1100101100010010010000111010011 !
+b1100101100010010010000111010011 0
+b1100101100010010010000111010011 +
+1#
+#35
+0'
+#36
+0#
+#38
+1#
+#39

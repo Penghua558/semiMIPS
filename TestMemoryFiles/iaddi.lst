@@ -1,0 +1,5 @@
+// this file is supposed to be read into instruction memory during test
+// this file tests I-type addi instruction and FIN instruction
+001000_00000_00010_0000000000010100 // addi $2 $zero 20, store 20 into $2
+101011_00000_00010_0000000000010000 // sw $2 16($zero), mem[4] = $2
+010000_00000000000000000000000000 // fin, halt cpu

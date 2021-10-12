@@ -1,0 +1,387 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_OUTPUT_EXCMD	mixed	/number, pattern, mixed, or combineV2/
+!_TAG_OUTPUT_FILESEP	slash	/slash or backslash/
+!_TAG_OUTPUT_MODE	u-ctags	/u-ctags or e-ctags/
+!_TAG_PATTERN_LENGTH_LIMIT	96	/0 for no limit/
+!_TAG_PROC_CWD	/home/penghuachen/VerilogPractice/semiMIPS/	//
+!_TAG_PROGRAM_AUTHOR	Universal Ctags Team	//
+!_TAG_PROGRAM_NAME	Universal Ctags	/Derived from Exuberant Ctags/
+!_TAG_PROGRAM_URL	https://ctags.io/	/official site/
+!_TAG_PROGRAM_VERSION	5.9.0	/p5.9.20210905.0/
+A	ALU/alu.v	/^input wire [31:0] A, \/\/ operand A$/;"	p	module:alu
+A	ALU/alu_tb.v	/^reg [31:0] A;$/;"	r	module:alu_tb
+ADD	ALU/aluopdef.v	/^`define ADD 4'h0 \/\/ add opcode$/;"	c
+ADDI	CtrlUnit/opcode.v	/^`define ADDI   6'h08 \/\/ add immeidate$/;"	c
+ADDIU	CtrlUnit/opcode.v	/^`define ADDIU  6'h09 \/\/ add unsigned immeidate$/;"	c
+ADDU	ALU/aluopdef.v	/^`define ADDU 4'h3 \/\/ add unsigned$/;"	c
+ALU	mipssingleclk.v	/^alu ALU ($/;"	i	module:mipssingleclk
+ALUAltSrc	CtrlUnit/ctrlunit.v	/^                 output reg ALUAltSrc,$/;"	p	module:ctrlunit
+ALUOp	CtrlUnit/ctrlunit.v	/^                 output reg [2:0] ALUOp,$/;"	p	module:ctrlunit
+ALUSrc	CtrlUnit/ctrlunit.v	/^                 output reg [1:0] ALUSrc,$/;"	p	module:ctrlunit
+AND	ALU/aluopdef.v	/^`define AND 4'h5 \/\/ and opcode$/;"	c
+ANDI	CtrlUnit/opcode.v	/^`define ANDI   6'h0C \/\/ and immeidate$/;"	c
+ASL	ALU/aluopdef.v	/^`define ASL 4'h9 \/\/ arithmetic shift left opcode$/;"	c
+ASR	ALU/aluopdef.v	/^`define ASR 4'hA \/\/ arithmetic shift right opcode$/;"	c
+AWIDTH	SRAM/sram.v	/^parameter AWIDTH = 32;$/;"	c	module:sram
+AWIDTH	SRAM/sram_tb.v	/^parameter AWIDTH = 8;$/;"	c	module:sram_tb
+B	ALU/alu.v	/^input wire [31:0] B, \/\/ operand B$/;"	p	module:alu
+B	ALU/alu_tb.v	/^reg [31:0] B;$/;"	r	module:alu_tb
+BBeq	CtrlUnit/ctrlunit.v	/^                 output reg BBeq, \/\/ short for BranchBne$/;"	p	module:ctrlunit
+BBgtz	CtrlUnit/ctrlunit.v	/^                 output reg BBgtz, \/\/ short for BranchBgtz$/;"	p	module:ctrlunit
+BBlez	CtrlUnit/ctrlunit.v	/^                 output reg BBlez, \/\/ short for BranchBlez$/;"	p	module:ctrlunit
+BBne	CtrlUnit/ctrlunit.v	/^                 output reg BBne, \/\/ short for BranchBne$/;"	p	module:ctrlunit
+BEQ	CtrlUnit/opcode.v	/^`define BEQ    6'h04 \/\/ branch if equal$/;"	c
+BGTZ	CtrlUnit/opcode.v	/^`define BGTZ   6'h07 \/\/ brach if greater than zero$/;"	c
+BLEZ	CtrlUnit/opcode.v	/^`define BLEZ   6'h06 \/\/ branch if less than or equal to zero$/;"	c
+BNE	CtrlUnit/opcode.v	/^`define BNE    6'h05 \/\/ branch if not equal$/;"	c
+DATAMEMDWITH	mipssingleclk.v	/^parameter DATAMEMDWITH = REGDWIDTH;$/;"	c	module:mipssingleclk
+DATAWIDTH	COUNTER/counter.v	/^parameter DATAWIDTH = 32;$/;"	c	module:counter
+DATAWIDTH	COUNTER/counter_tb.v	/^parameter DATAWIDTH = 5;$/;"	c	module:counter_tb
+DEPTH	SRAM/sram.v	/^parameter DEPTH = 10240;$/;"	c	module:sram
+DEPTH	SRAM/sram_tb.v	/^parameter DEPTH = 64;$/;"	c	module:sram_tb
+DWIDTH	RegFile/regfile.v	/^module regfile #(parameter DWIDTH = 32)( \/\/ DWIDTH defines the data width$/;"	c	module:regfile
+DWIDTH	RegFile/regfile_tb.v	/^parameter DWIDTH = 32;$/;"	c	module:regfile_tb
+DWIDTH	SRAM/sram.v	/^parameter DWIDTH = 32;$/;"	c	module:sram
+DWIDTH	SRAM/sram_tb.v	/^parameter DWIDTH = 32;$/;"	c	module:sram_tb
+EXINWIDTH	mipssingleclk.v	/^parameter EXINWIDTH = 16;$/;"	c	module:mipssingleclk
+EXOUTWIDTH	mipssingleclk.v	/^parameter EXOUTWIDTH = REGDWIDTH;$/;"	c	module:mipssingleclk
+FIN	CtrlUnit/opcode.v	/^`define FIN    6'h10 \/\/ signal finish control signal$/;"	c
+FUNCT_ADD	ALUCtrl/funct.v	/^`define FUNCT_ADD  6'h20 \/\/ add$/;"	c
+FUNCT_ADDU	ALUCtrl/funct.v	/^`define FUNCT_ADDU 6'h21 \/\/ add unsigned$/;"	c
+FUNCT_AND	ALUCtrl/funct.v	/^`define FUNCT_AND  6'h24 \/\/ and$/;"	c
+FUNCT_JR	ALUCtrl/funct.v	/^`define FUNCT_JR   6'h08 \/\/ jump register$/;"	c
+FUNCT_OR	ALUCtrl/funct.v	/^`define FUNCT_OR   6'h25 \/\/ or$/;"	c
+FUNCT_SLL	ALUCtrl/funct.v	/^`define FUNCT_SLL  6'h00 \/\/ logical shift left$/;"	c
+FUNCT_SLT	ALUCtrl/funct.v	/^`define FUNCT_SLT  6'h2A \/\/ set to 1 if less than$/;"	c
+FUNCT_SLTU	ALUCtrl/funct.v	/^`define FUNCT_SLTU 6'h2B \/\/ set to 1 if less than unsigned$/;"	c
+FUNCT_SRA	ALUCtrl/funct.v	/^`define FUNCT_SRA  6'h03 \/\/ arithmetic shift right$/;"	c
+FUNCT_SRL	ALUCtrl/funct.v	/^`define FUNCT_SRL  6'h02 \/\/ logical shift right$/;"	c
+FUNCT_SUB	ALUCtrl/funct.v	/^`define FUNCT_SUB  6'h22 \/\/ subtract$/;"	c
+FUNCT_SUBU	ALUCtrl/funct.v	/^`define FUNCT_SUBU 6'h23 \/\/ subtract unsigned$/;"	c
+FUNCT_XOR	ALUCtrl/funct.v	/^`define FUNCT_XOR  6'h26 \/\/ xor$/;"	c
+Fin	CtrlUnit/ctrlunit.v	/^                 output reg Fin); $/;"	p	module:ctrlunit
+INSMEMAWIDTH	mipssingleclk.v	/^parameter INSMEMAWIDTH = PCDATAWIDTH;$/;"	c	module:mipssingleclk
+INSMEMDEPTH	mipssingleclk.v	/^parameter INSMEMDEPTH = PCUPPERLIMIT\/4;$/;"	c	module:mipssingleclk
+INSMEMDWIDTH	mipssingleclk.v	/^parameter INSMEMDWIDTH = 32;$/;"	c	module:mipssingleclk
+INWIDTH	SignedExtend/signedextend.v	/^module signedextend #(parameter INWIDTH = 16, parameter OUTWIDTH = 32)($/;"	c	module:signedextend
+INWIDTH	SignedExtend/signedextend_tb.v	/^parameter INWIDTH = 4;$/;"	c	module:signedextend_tb
+JAL	CtrlUnit/opcode.v	/^`define JAL    6'h03 \/\/ jump and link$/;"	c
+JUMP	CtrlUnit/opcode.v	/^`define JUMP   6'h02 \/\/ jump to address$/;"	c
+Jump	CtrlUnit/ctrlunit.v	/^                 output reg Jump,$/;"	p	module:ctrlunit
+LB	CtrlUnit/opcode.v	/^`define LB     6'h20 \/\/ load byte, not gonna implement$/;"	c
+LSL	ALU/aluopdef.v	/^`define LSL 4'hB \/\/ logical shift left opcode$/;"	c
+LSR	ALU/aluopdef.v	/^`define LSR 4'hC \/\/ logical shift right opcode$/;"	c
+LUI	CtrlUnit/opcode.v	/^`define LUI    6'h0F \/\/ load upper immeidate$/;"	c
+LW	CtrlUnit/opcode.v	/^`define LW     6'h23 \/\/ load word$/;"	c
+MemRd	CtrlUnit/ctrlunit.v	/^                 output reg MemRd,$/;"	p	module:ctrlunit
+MemWr	CtrlUnit/ctrlunit.v	/^                 output reg MemWr,$/;"	p	module:ctrlunit
+MemtoReg	CtrlUnit/ctrlunit.v	/^                 output reg [1:0] MemtoReg,$/;"	p	module:ctrlunit
+NEG	ALU/aluopdef.v	/^`define NEG 4'h2 \/\/ 2's complement opcode$/;"	c
+NOLOAD	BranchCtrl/branchcodedef.v	/^`define NOLOAD 2'b00 \/\/ no PC address load, in other word, no jump, no branch$/;"	c
+NOT	ALU/aluopdef.v	/^`define NOT 4'h8 \/\/ 1's complement opcode$/;"	c
+OR	ALU/aluopdef.v	/^`define OR 4'h6 \/\/ or opcode$/;"	c
+ORI	CtrlUnit/opcode.v	/^`define ORI    6'h0D \/\/ or immeidate$/;"	c
+OUTWIDTH	SignedExtend/signedextend.v	/^module signedextend #(parameter INWIDTH = 16, parameter OUTWIDTH = 32)($/;"	c	module:signedextend
+OUTWIDTH	SignedExtend/signedextend_tb.v	/^parameter OUTWIDTH = 8;$/;"	c	module:signedextend_tb
+PC	mipssingleclk.v	/^counter #(.DATAWIDTH(PCDATAWIDTH), .UPPERLIMIT(PCUPPERLIMIT)) PC ($/;"	i	module:mipssingleclk
+PCDATAWIDTH	mipssingleclk.v	/^parameter PCDATAWIDTH = 32; \/\/ instruction memory address has 32bit width$/;"	c	module:mipssingleclk
+PCEn	CtrlUnit/ctrlunit.v	/^                 output reg PCEn,$/;"	p	module:ctrlunit
+PCUPPERLIMIT	mipssingleclk.v	/^parameter PCUPPERLIMIT = 4096; $/;"	c	module:mipssingleclk
+REGDWIDTH	mipssingleclk.v	/^parameter REGDWIDTH = INSMEMDWIDTH;$/;"	c	module:mipssingleclk
+RTYPE	CtrlUnit/opcode.v	/^`define RTYPE  6'h00 \/\/ R-type instructions$/;"	c
+RegDst	CtrlUnit/ctrlunit.v	/^                 output reg [1:0] RegDst,$/;"	p	module:ctrlunit
+RegWr	CtrlUnit/ctrlunit.v	/^                 output reg RegWr,$/;"	p	module:ctrlunit
+SB	CtrlUnit/opcode.v	/^`define SB     6'h28 \/\/ store byte, not gonna implement$/;"	c
+SELBRANCH	BranchCtrl/branchcodedef.v	/^`define SELBRANCH 2'b10 \/\/ choose address from branch instructions$/;"	c
+SELJUMP	BranchCtrl/branchcodedef.v	/^`define SELJUMP 2'b01 \/\/ choose address from jump instructions$/;"	c
+SH	CtrlUnit/opcode.v	/^`define SH     6'h29 \/\/ store half word, not gonna implement$/;"	c
+SLTI	CtrlUnit/opcode.v	/^`define SLTI   6'h0A \/\/ set to 1 if less than immeidate$/;"	c
+SUB	ALU/aluopdef.v	/^`define SUB 4'h1 \/\/ subtract opcode$/;"	c
+SUBU	ALU/aluopdef.v	/^`define SUBU 4'h4 \/\/ subtract unsigned$/;"	c
+SW	CtrlUnit/opcode.v	/^`define SW     6'h2B \/\/ store word$/;"	c
+UPPERLIMIT	COUNTER/counter.v	/^parameter UPPERLIMIT = 4096;$/;"	c	module:counter
+UPPERLIMIT	COUNTER/counter_tb.v	/^parameter UPPERLIMIT = 28;$/;"	c	module:counter_tb
+XOR	ALU/aluopdef.v	/^`define XOR 4'h7 \/\/ xor opcode$/;"	c
+a0	RegFile/regindexdef.v	/^`define a0 4$/;"	c
+a1	RegFile/regindexdef.v	/^`define a1 5$/;"	c
+a2	RegFile/regindexdef.v	/^`define a2 6$/;"	c
+a3	RegFile/regindexdef.v	/^`define a3 7$/;"	c
+add	ALU/alu_tb.v	/^task add;$/;"	t	module:alu_tb
+addr	SRAM/sram_tb.v	/^reg [AWIDTH-1:0] addr;$/;"	r	module:sram_tb
+address	SRAM/sram.v	/^input wire [AWIDTH-1:0] address;$/;"	p	module:sram
+addu	ALU/alu_tb.v	/^task addu;$/;"	t	module:alu_tb
+alu	ALU/alu.v	/^module alu($/;"	m
+aluS	ALU/alu_tb.v	/^alu aluS($/;"	i	module:alu_tb
+aluU	ALU/alu_tb.v	/^alu aluU($/;"	i	module:alu_tb
+alu_tb	ALU/alu_tb.v	/^module alu_tb();$/;"	m
+alualtsrc	MUX/ALUAltSrcMUX/alualtsrcmux.v	/^                  input wire alualtsrc,$/;"	p	module:alualtsrcmux
+alualtsrcmux	MUX/ALUAltSrcMUX/alualtsrcmux.v	/^module alualtsrcmux( input wire [31:0] regsrc,$/;"	m
+alualtsrcmuxins	mipssingleclk.v	/^alualtsrcmux alualtsrcmuxins ($/;"	i	module:mipssingleclk
+aluctrl	ALUCtrl/aluctrl.v	/^module aluctrl(input wire [2:0] aluop,$/;"	m
+aluctrl_tb	ALUCtrl/aluctrl_tb.v	/^module aluctrl_tb();$/;"	m
+aluctrlins	mipssingleclk.v	/^aluctrl aluctrlins ($/;"	i	module:mipssingleclk
+aludata	MUX/RegSrcMUX/regsrcmux.v	/^                  input wire [31:0] aludata,$/;"	p	module:regsrcmux
+aluop	ALUCtrl/aluctrl.v	/^module aluctrl(input wire [2:0] aluop,$/;"	p	module:aluctrl
+aluop	ALUCtrl/aluctrl_tb.v	/^reg [2:0] aluop;$/;"	r	module:aluctrl_tb
+aluopcodeins	mipssingleclk.v	/^wire [3:0] aluopcodeins;$/;"	n	module:mipssingleclk
+aluout	mipssingleclk.v	/^wire [31:0] aluout;$/;"	n	module:mipssingleclk
+alusrc	MUX/ALUSrcMUX/alusrcmux.v	/^                  input wire [1:0] alusrc,$/;"	p	module:alusrcmux
+alusrcmux	MUX/ALUSrcMUX/alusrcmux.v	/^module alusrcmux( input wire [31:0] regsrc,$/;"	m
+alusrcmuxins	mipssingleclk.v	/^alusrcmux alusrcmuxins ($/;"	i	module:mipssingleclk
+andtask	ALU/alu_tb.v	/^task andtask;$/;"	t	module:alu_tb
+asl	ALU/alu_tb.v	/^task asl;$/;"	t	module:alu_tb
+asr	ALU/alu_tb.v	/^task asr;$/;"	t	module:alu_tb
+assctrlsig	CtrlUnit/ctrlunit.v	/^task assctrlsig; \/\/ short for assign control signals$/;"	t	module:ctrlunit
+at	RegFile/regindexdef.v	/^`define at 1$/;"	c
+branchaddr	MUX/PCAddrMUX/pcaddrmux.v	/^                 input wire [31:0] branchaddr,$/;"	p	module:pcaddrmux
+branchaddr	MUX/PCAddrMUX/pcaddrmux_tb.v	/^reg [31:0] branchaddr;$/;"	r	module:pcaddrmux_tb
+branchaddr	mipssingleclk.v	/^wire [INSMEMDWIDTH-1:0] branchaddr;$/;"	n	module:mipssingleclk
+branchbeq	BranchCtrl/branchctrl.v	/^                   input wire branchbeq,$/;"	p	module:branchctrl
+branchbeq	BranchCtrl/branchctrl_tb.v	/^reg zero, negative, overflow, jump, branchbeq, branchbne, branchblez, branchbgtz;$/;"	r	module:branchctrl_tb
+branchbgtz	BranchCtrl/branchctrl.v	/^                   input wire branchbgtz,$/;"	p	module:branchctrl
+branchbgtz	BranchCtrl/branchctrl_tb.v	/^reg zero, negative, overflow, jump, branchbeq, branchbne, branchblez, branchbgtz;$/;"	r	module:branchctrl_tb
+branchblez	BranchCtrl/branchctrl.v	/^                   input wire branchblez,$/;"	p	module:branchctrl
+branchblez	BranchCtrl/branchctrl_tb.v	/^reg zero, negative, overflow, jump, branchbeq, branchbne, branchblez, branchbgtz;$/;"	r	module:branchctrl_tb
+branchbne	BranchCtrl/branchctrl.v	/^                   input wire branchbne,$/;"	p	module:branchctrl
+branchbne	BranchCtrl/branchctrl_tb.v	/^reg zero, negative, overflow, jump, branchbeq, branchbne, branchblez, branchbgtz;$/;"	r	module:branchctrl_tb
+branchcode	MUX/PCAddrMUX/pcaddrmux.v	/^                 input wire [1:0] branchcode,$/;"	p	module:pcaddrmux
+branchcode	MUX/PCAddrMUX/pcaddrmux_tb.v	/^reg [1:0] branchcode;$/;"	r	module:pcaddrmux_tb
+branchctrl	BranchCtrl/branchctrl.v	/^module branchctrl( input wire zero, \/\/ flag from ALU$/;"	m
+branchctrl_tb	BranchCtrl/branchctrl_tb.v	/^module branchctrl_tb();$/;"	m
+branchctrlins	mipssingleclk.v	/^branchctrl branchctrlins ($/;"	i	module:mipssingleclk
+branchout	mipssingleclk.v	/^wire [1:0] branchout;$/;"	n	module:mipssingleclk
+clk	COUNTER/counter.v	/^input wire clk;$/;"	p	module:counter
+clk	COUNTER/counter_tb.v	/^reg clk, en, clr, load;$/;"	r	module:counter_tb
+clk	RegFile/regfile.v	/^input wire clk, \/\/ clock signal$/;"	p	module:regfile
+clk	RegFile/regfile_tb.v	/^reg clk, wr;$/;"	r	module:regfile_tb
+clk	SRAM/sram.v	/^input wire clk;$/;"	p	module:sram
+clk	SRAM/sram_tb.v	/^reg clk, rd, wr, cs;$/;"	r	module:sram_tb
+clk	mipssingleclk.v	/^module mipssingleclk( input wire clk,$/;"	p	module:mipssingleclk
+clk	mipssingleclk_tb.v	/^reg clk;$/;"	r	module:mipssingleclk_tb
+clr	COUNTER/counter.v	/^input wire clr;$/;"	p	module:counter
+clr	COUNTER/counter_tb.v	/^reg clk, en, clr, load;$/;"	r	module:counter_tb
+controlunit	mipssingleclk.v	/^ctrlunit controlunit ($/;"	i	module:mipssingleclk
+counter	COUNTER/counter.v	/^module counter(data_in, en, clr, clk, load, data_out, data_out_next);$/;"	m
+counter_tb	COUNTER/counter_tb.v	/^module counter_tb();$/;"	m
+cs	SRAM/sram.v	/^input wire cs;$/;"	p	module:sram
+cs	SRAM/sram_tb.v	/^reg clk, rd, wr, cs;$/;"	r	module:sram_tb
+ctrlalualtsrc	mipssingleclk.v	/^wire ctrlalualtsrc;$/;"	n	module:mipssingleclk
+ctrlaluop	mipssingleclk.v	/^wire [2:0] ctrlaluop;$/;"	n	module:mipssingleclk
+ctrlalusrc	mipssingleclk.v	/^wire [1:0] ctrlalusrc;$/;"	n	module:mipssingleclk
+ctrlbbeq	mipssingleclk.v	/^wire ctrljump, ctrlbbeq, ctrlbbne, ctrlbblez, ctrlbbgtz;$/;"	n	module:mipssingleclk
+ctrlbbgtz	mipssingleclk.v	/^wire ctrljump, ctrlbbeq, ctrlbbne, ctrlbblez, ctrlbbgtz;$/;"	n	module:mipssingleclk
+ctrlbblez	mipssingleclk.v	/^wire ctrljump, ctrlbbeq, ctrlbbne, ctrlbblez, ctrlbbgtz;$/;"	n	module:mipssingleclk
+ctrlbbne	mipssingleclk.v	/^wire ctrljump, ctrlbbeq, ctrlbbne, ctrlbblez, ctrlbbgtz;$/;"	n	module:mipssingleclk
+ctrldmemrd	mipssingleclk.v	/^wire ctrldmemwr, ctrldmemrd;$/;"	n	module:mipssingleclk
+ctrldmemwr	mipssingleclk.v	/^wire ctrldmemwr, ctrldmemrd;$/;"	n	module:mipssingleclk
+ctrljump	mipssingleclk.v	/^wire ctrljump, ctrlbbeq, ctrlbbne, ctrlbblez, ctrlbbgtz;$/;"	n	module:mipssingleclk
+ctrlmemtoreg	mipssingleclk.v	/^wire [1:0] ctrlmemtoreg;$/;"	n	module:mipssingleclk
+ctrlpcen	mipssingleclk.v	/^wire ctrlpcen;$/;"	n	module:mipssingleclk
+ctrlregdst	mipssingleclk.v	/^wire [1:0] ctrlregdst;$/;"	n	module:mipssingleclk
+ctrlregwr	mipssingleclk.v	/^wire ctrlregwr;$/;"	n	module:mipssingleclk
+ctrlsig	CtrlUnit/ctrlunit.v	/^input [19:0] ctrlsig;$/;"	p	task:ctrlunit.assctrlsig
+ctrlunit	CtrlUnit/ctrlunit.v	/^module ctrlunit( input wire [5:0] opcode, \/\/ first 6bit from MSB$/;"	m
+data_in	COUNTER/counter.v	/^input wire [DATAWIDTH-1:0] data_in;$/;"	p	module:counter
+data_in	COUNTER/counter_tb.v	/^reg [DATAWIDTH-1:0] data_in;$/;"	r	module:counter_tb
+data_out	COUNTER/counter.v	/^output reg [DATAWIDTH-1:0] data_out;$/;"	p	module:counter
+data_out	COUNTER/counter_tb.v	/^wire [DATAWIDTH-1:0] data_out;$/;"	n	module:counter_tb
+data_out_next	COUNTER/counter.v	/^output reg [DATAWIDTH-1:0] data_out_next; $/;"	p	module:counter
+datamem	mipssingleclk.v	/^sram #(.DWIDTH(DATAMEMDWITH)) datamem ($/;"	i	module:mipssingleclk
+datamemdout	mipssingleclk.v	/^wire [DATAMEMDWITH-1:0] datamemdout;$/;"	n	module:mipssingleclk
+din	RegFile/regfile.v	/^input wire [DWIDTH-1:0] din, \/\/ data that written into register$/;"	p	module:regfile
+din	RegFile/regfile_tb.v	/^reg [DWIDTH-1:0] din;$/;"	r	module:regfile_tb
+din	SRAM/sram.v	/^input wire [DWIDTH-1:0] din;$/;"	p	module:sram
+din	SRAM/sram_tb.v	/^reg [DWIDTH-1:0] din;$/;"	r	module:sram_tb
+din	SignedExtend/signedextend.v	/^                        input wire [INWIDTH-1:0] din,$/;"	p	module:signedextend
+din	SignedExtend/signedextend_tb.v	/^reg [INWIDTH-1:0] din;$/;"	r	module:signedextend_tb
+dout	SRAM/sram.v	/^output reg [DWIDTH-1:0] dout;$/;"	p	module:sram
+dout	SRAM/sram_tb.v	/^wire [DWIDTH-1:0] dout;$/;"	n	module:sram_tb
+dout	SignedExtend/signedextend.v	/^                        output reg [OUTWIDTH-1:0] dout);$/;"	p	module:signedextend
+dout	SignedExtend/signedextend_tb.v	/^wire [OUTWIDTH-1:0] dout;$/;"	n	module:signedextend_tb
+dout1	RegFile/regfile.v	/^output reg [DWIDTH-1:0] dout1, \/\/ register1 data output$/;"	p	module:regfile
+dout1	RegFile/regfile_tb.v	/^wire [DWIDTH-1:0] dout1;$/;"	n	module:regfile_tb
+dout2	RegFile/regfile.v	/^output reg [DWIDTH-1:0] dout2); \/\/ register2 data output$/;"	p	module:regfile
+dout2	RegFile/regfile_tb.v	/^wire [DWIDTH-1:0] dout2;$/;"	n	module:regfile_tb
+dstaddr	MUX/RegDstMUX/regdstmux.v	/^                 output reg [4:0] dstaddr);$/;"	p	module:regdstmux
+dstaddrins	mipssingleclk.v	/^wire [4:0] dstaddrins;$/;"	n	module:mipssingleclk
+dtempout	SRAM/sram.v	/^wire [DWIDTH-1:0] dtempout;$/;"	n	module:sram
+dtempout1	RegFile/regfile.v	/^wire [DWIDTH-1:0] dtempout1;$/;"	n	module:regfile
+dtempout2	RegFile/regfile.v	/^wire [DWIDTH-1:0] dtempout2;$/;"	n	module:regfile
+dut	ALUCtrl/aluctrl_tb.v	/^aluctrl dut(aluop, funct, opcodeforalu);$/;"	i	module:aluctrl_tb
+dut	BranchCtrl/branchctrl_tb.v	/^branchctrl dut(.zero(zero),$/;"	i	module:branchctrl_tb
+dut	COUNTER/counter_tb.v	/^counter #(.DATAWIDTH(DATAWIDTH), .UPPERLIMIT(UPPERLIMIT)) dut ($/;"	i	module:counter_tb
+dut	MUX/PCAddrMUX/pcaddrmux_tb.v	/^pcaddrmux dut(.jumpaddr(jumpaddr),$/;"	i	module:pcaddrmux_tb
+dut	RegFile/regfile_tb.v	/^regfile #(.DWIDTH(DWIDTH)) dut ($/;"	i	module:regfile_tb
+dut	SRAM/sram_tb.v	/^sram #(.DWIDTH(DWIDTH), .AWIDTH(AWIDTH), .DEPTH(DEPTH)) dut ($/;"	i	module:sram_tb
+dut	SignedExtend/signedextend_tb.v	/^signedextend #(.INWIDTH(INWIDTH), .OUTWIDTH(OUTWIDTH)) dut(din, dout);$/;"	i	module:signedextend_tb
+dut	mipssingleclk_tb.v	/^mipssingleclk dut (clk, pcclr, fin);$/;"	i	module:mipssingleclk_tb
+en	COUNTER/counter.v	/^input wire en;$/;"	p	module:counter
+en	COUNTER/counter_tb.v	/^reg clk, en, clr, load;$/;"	r	module:counter_tb
+exdout	mipssingleclk.v	/^wire [EXOUTWIDTH-1:0] exdout;$/;"	n	module:mipssingleclk
+extendins	mipssingleclk.v	/^signedextend #(.INWIDTH(EXINWIDTH), .OUTWIDTH(EXOUTWIDTH)) extendins ($/;"	i	module:mipssingleclk
+fin	mipssingleclk.v	/^                       output reg fin);$/;"	p	module:mipssingleclk
+fin	mipssingleclk_tb.v	/^wire fin;$/;"	n	module:mipssingleclk_tb
+fp	RegFile/regindexdef.v	/^`define fp 30$/;"	c
+funct	ALUCtrl/aluctrl.v	/^               input wire [5:0] funct,$/;"	p	module:aluctrl
+funct	ALUCtrl/aluctrl_tb.v	/^reg [5:0] funct;$/;"	r	module:aluctrl_tb
+gp	RegFile/regindexdef.v	/^`define gp 28$/;"	c
+idstaddr	MUX/RegDstMUX/regdstmux.v	/^                 input wire [4:0] idstaddr, \/\/ I-format dst address field$/;"	p	module:regdstmux
+immsrc	MUX/ALUAltSrcMUX/alualtsrcmux.v	/^                  input wire [31:0] immsrc,$/;"	p	module:alualtsrcmux
+immsrc	MUX/ALUSrcMUX/alusrcmux.v	/^                  input wire [31:0] immsrc,$/;"	p	module:alusrcmux
+insmem	mipssingleclk.v	/^    insmem ( $/;"	i	module:mipssingleclk
+insmemins	mipssingleclk.v	/^wire [INSMEMDWIDTH-1:0] insmemins;$/;"	n	module:mipssingleclk
+jump	BranchCtrl/branchctrl.v	/^                   input wire jump, \/\/ jump signal from control unit$/;"	p	module:branchctrl
+jump	BranchCtrl/branchctrl_tb.v	/^reg zero, negative, overflow, jump, branchbeq, branchbne, branchblez, branchbgtz;$/;"	r	module:branchctrl_tb
+jumpaddr	MUX/PCAddrMUX/pcaddrmux.v	/^module pcaddrmux(input wire [31:0] jumpaddr,$/;"	p	module:pcaddrmux
+jumpaddr	MUX/PCAddrMUX/pcaddrmux_tb.v	/^reg [31:0] jumpaddr;$/;"	r	module:pcaddrmux_tb
+jumpaddr	mipssingleclk.v	/^wire [INSMEMDWIDTH-1:0] jumpaddr;$/;"	n	module:mipssingleclk
+k0	RegFile/regindexdef.v	/^`define k0 26$/;"	c
+k1	RegFile/regindexdef.v	/^`define k1 27$/;"	c
+load	COUNTER/counter.v	/^input wire load;$/;"	p	module:counter
+load	COUNTER/counter_tb.v	/^reg clk, en, clr, load;$/;"	r	module:counter_tb
+lsl	ALU/alu_tb.v	/^task lsl;$/;"	t	module:alu_tb
+lsr	ALU/alu_tb.v	/^task lsr;$/;"	t	module:alu_tb
+mem	SRAM/sram.v	/^reg [DWIDTH-1:0] mem[0:DEPTH-1];$/;"	r	module:sram
+memdata	MUX/RegSrcMUX/regsrcmux.v	/^module regsrcmux( input wire [31:0] memdata,$/;"	p	module:regsrcmux
+memtoreg	MUX/RegSrcMUX/regsrcmux.v	/^                  input wire [1:0] memtoreg,$/;"	p	module:regsrcmux
+mipssingleclk	mipssingleclk.v	/^module mipssingleclk( input wire clk,$/;"	m
+mipssingleclk_tb	mipssingleclk_tb.v	/^module mipssingleclk_tb ();$/;"	m
+negation	ALU/alu_tb.v	/^task negation;$/;"	t	module:alu_tb
+negative	ALU/alu.v	/^output reg negative); \/\/ flag to indicate result is negative, active HIGH$/;"	p	module:alu
+negative	ALU/alu_tb.v	/^wire zero, overflow, negative;$/;"	n	module:alu_tb
+negative	BranchCtrl/branchctrl.v	/^                   input wire negative, \/\/ flag from ALU$/;"	p	module:branchctrl
+negative	BranchCtrl/branchctrl_tb.v	/^reg zero, negative, overflow, jump, branchbeq, branchbne, branchblez, branchbgtz;$/;"	r	module:branchctrl_tb
+negative	MUX/RegSrcMUX/regsrcmux.v	/^                  input wire negative,$/;"	p	module:regsrcmux
+negativeins	mipssingleclk.v	/^wire zeroins, negativeins, overflowins;$/;"	n	module:mipssingleclk
+nottask	ALU/alu_tb.v	/^task nottask;$/;"	t	module:alu_tb
+op	ALU/alu.v	/^input wire [3:0] op, \/\/ opcode for ALU$/;"	p	module:alu
+op	ALU/alu_tb.v	/^reg [3:0] op;$/;"	r	module:alu_tb
+opcode	CtrlUnit/ctrlunit.v	/^module ctrlunit( input wire [5:0] opcode, \/\/ first 6bit from MSB$/;"	p	module:ctrlunit
+opcodeforalu	ALUCtrl/aluctrl.v	/^               output reg [3:0] opcodeforalu);$/;"	p	module:aluctrl
+opcodeforalu	ALUCtrl/aluctrl_tb.v	/^wire [3:0] opcodeforalu;$/;"	n	module:aluctrl_tb
+operand	MUX/ALUAltSrcMUX/alualtsrcmux.v	/^                  output reg [31:0] operand);$/;"	p	module:alualtsrcmux
+operand	MUX/ALUSrcMUX/alusrcmux.v	/^                  output reg [31:0] operand);$/;"	p	module:alusrcmux
+operandA	ALU/alu_tb.v	/^input reg [31:0] operandA;$/;"	p	task:alu_tb.addu
+operandA	ALU/alu_tb.v	/^input reg [31:0] operandA;$/;"	p	task:alu_tb.andtask
+operandA	ALU/alu_tb.v	/^input reg [31:0] operandA;$/;"	p	task:alu_tb.asl
+operandA	ALU/alu_tb.v	/^input reg [31:0] operandA;$/;"	p	task:alu_tb.asr
+operandA	ALU/alu_tb.v	/^input reg [31:0] operandA;$/;"	p	task:alu_tb.lsl
+operandA	ALU/alu_tb.v	/^input reg [31:0] operandA;$/;"	p	task:alu_tb.lsr
+operandA	ALU/alu_tb.v	/^input reg [31:0] operandA;$/;"	p	task:alu_tb.nottask
+operandA	ALU/alu_tb.v	/^input reg [31:0] operandA;$/;"	p	task:alu_tb.ortask
+operandA	ALU/alu_tb.v	/^input reg [31:0] operandA;$/;"	p	task:alu_tb.subtractu
+operandA	ALU/alu_tb.v	/^input reg [31:0] operandA;$/;"	p	task:alu_tb.xortask
+operandA	ALU/alu_tb.v	/^input reg signed [31:0] operandA;$/;"	p	task:alu_tb.add
+operandA	ALU/alu_tb.v	/^input reg signed [31:0] operandA;$/;"	p	task:alu_tb.negation
+operandA	ALU/alu_tb.v	/^input reg signed [31:0] operandA;$/;"	p	task:alu_tb.subtract
+operandA	mipssingleclk.v	/^wire [REGDWIDTH-1:0] operandA;$/;"	n	module:mipssingleclk
+operandB	ALU/alu_tb.v	/^input reg [31:0] operandB;$/;"	p	task:alu_tb.addu
+operandB	ALU/alu_tb.v	/^input reg [31:0] operandB;$/;"	p	task:alu_tb.andtask
+operandB	ALU/alu_tb.v	/^input reg [31:0] operandB;$/;"	p	task:alu_tb.asl
+operandB	ALU/alu_tb.v	/^input reg [31:0] operandB;$/;"	p	task:alu_tb.asr
+operandB	ALU/alu_tb.v	/^input reg [31:0] operandB;$/;"	p	task:alu_tb.lsl
+operandB	ALU/alu_tb.v	/^input reg [31:0] operandB;$/;"	p	task:alu_tb.lsr
+operandB	ALU/alu_tb.v	/^input reg [31:0] operandB;$/;"	p	task:alu_tb.ortask
+operandB	ALU/alu_tb.v	/^input reg [31:0] operandB;$/;"	p	task:alu_tb.subtractu
+operandB	ALU/alu_tb.v	/^input reg [31:0] operandB;$/;"	p	task:alu_tb.xortask
+operandB	ALU/alu_tb.v	/^input reg signed [31:0] operandB;$/;"	p	task:alu_tb.add
+operandB	ALU/alu_tb.v	/^input reg signed [31:0] operandB;$/;"	p	task:alu_tb.subtract
+operandB	mipssingleclk.v	/^wire [REGDWIDTH-1:0] operandB;$/;"	n	module:mipssingleclk
+ortask	ALU/alu_tb.v	/^task ortask;$/;"	t	module:alu_tb
+out	ALU/alu.v	/^output reg [31:0] out, \/\/ result of ALU$/;"	p	module:alu
+out	ALU/alu_tb.v	/^wire [31:0] out;$/;"	n	module:alu_tb
+out	BranchCtrl/branchctrl.v	/^                   output reg [1:0] out); \/\/ 3 cases in total, so we need 2 bits to control MU/;"	p	module:branchctrl
+out	BranchCtrl/branchctrl_tb.v	/^wire [1:0] out;$/;"	n	module:branchctrl_tb
+overflow	ALU/alu.v	/^output reg overflow, \/\/ flag to indicate result is overflow, active HIGH$/;"	p	module:alu
+overflow	ALU/alu_tb.v	/^wire zero, overflow, negative;$/;"	n	module:alu_tb
+overflow	BranchCtrl/branchctrl.v	/^                   input wire overflow, \/\/ flag from ALU$/;"	p	module:branchctrl
+overflow	BranchCtrl/branchctrl_tb.v	/^reg zero, negative, overflow, jump, branchbeq, branchbne, branchblez, branchbgtz;$/;"	r	module:branchctrl_tb
+overflowins	mipssingleclk.v	/^wire zeroins, negativeins, overflowins;$/;"	n	module:mipssingleclk
+pcaddr	MUX/PCAddrMUX/pcaddrmux.v	/^                 output reg [31:0] pcaddr);$/;"	p	module:pcaddrmux
+pcaddr	MUX/PCAddrMUX/pcaddrmux_tb.v	/^wire [31:0] pcaddr;$/;"	n	module:pcaddrmux_tb
+pcaddress	mipssingleclk.v	/^wire [PCDATAWIDTH-1:0] pcaddress;$/;"	n	module:mipssingleclk
+pcaddrmux	MUX/PCAddrMUX/pcaddrmux.v	/^module pcaddrmux(input wire [31:0] jumpaddr,$/;"	m
+pcaddrmux_tb	MUX/PCAddrMUX/pcaddrmux_tb.v	/^module pcaddrmux_tb();$/;"	m
+pcaddrmuxins	mipssingleclk.v	/^pcaddrmux pcaddrmuxins ($/;"	i	module:mipssingleclk
+pcclr	mipssingleclk.v	/^                       input wire pcclr,$/;"	p	module:mipssingleclk
+pcclr	mipssingleclk_tb.v	/^reg pcclr;$/;"	r	module:mipssingleclk_tb
+pcdata	MUX/RegSrcMUX/regsrcmux.v	/^                  input wire [31:0] pcdata,$/;"	p	module:regsrcmux
+pcdata_out	mipssingleclk.v	/^wire [PCDATAWIDTH-1:0] pcdata_out;$/;"	n	module:mipssingleclk
+pcdata_out_next	mipssingleclk.v	/^wire [PCDATAWIDTH-1:0] pcdata_out_next;$/;"	n	module:mipssingleclk
+pcload	MUX/PCAddrMUX/pcaddrmux.v	/^                 output reg pcload, \/\/ this pin will connect to PC load$/;"	p	module:pcaddrmux
+pcload	MUX/PCAddrMUX/pcaddrmux_tb.v	/^wire pcload;$/;"	n	module:pcaddrmux_tb
+pcload	mipssingleclk.v	/^wire pcload;$/;"	n	module:mipssingleclk
+ra	RegFile/regindexdef.v	/^`define ra 31$/;"	c
+rd	SRAM/sram.v	/^input wire rd;$/;"	p	module:sram
+rd	SRAM/sram_tb.v	/^reg clk, rd, wr, cs;$/;"	r	module:sram_tb
+rdaddr1	RegFile/regfile.v	/^input wire [4:0] rdaddr1, \/\/ read register1 address$/;"	p	module:regfile
+rdaddr1	RegFile/regfile_tb.v	/^reg [4:0] rdaddr1;$/;"	r	module:regfile_tb
+rdaddr2	RegFile/regfile.v	/^input wire [4:0] rdaddr2, \/\/ read register2 address$/;"	p	module:regfile
+rdaddr2	RegFile/regfile_tb.v	/^reg [4:0] rdaddr2;$/;"	r	module:regfile_tb
+rdstaddr	MUX/RegDstMUX/regdstmux.v	/^module regdstmux(input wire [4:0] rdstaddr, \/\/ R-format dst address field$/;"	p	module:regdstmux
+regdata	MUX/RegSrcMUX/regsrcmux.v	/^                  output reg [31:0] regdata);$/;"	p	module:regsrcmux
+regdinins	mipssingleclk.v	/^wire [REGDWIDTH-1:0] regdinins;$/;"	n	module:mipssingleclk
+regdout1ins	mipssingleclk.v	/^wire [REGDWIDTH-1:0] regdout1ins;$/;"	n	module:mipssingleclk
+regdout2ins	mipssingleclk.v	/^wire [REGDWIDTH-1:0] regdout2ins;$/;"	n	module:mipssingleclk
+regdst	MUX/RegDstMUX/regdstmux.v	/^                 input wire [1:0] regdst, \/\/ control signal$/;"	p	module:regdstmux
+regdstmux	MUX/RegDstMUX/regdstmux.v	/^module regdstmux(input wire [4:0] rdstaddr, \/\/ R-format dst address field$/;"	m
+regdstmuxins	mipssingleclk.v	/^regdstmux regdstmuxins ($/;"	i	module:mipssingleclk
+regfile	RegFile/regfile.v	/^module regfile #(parameter DWIDTH = 32)( \/\/ DWIDTH defines the data width$/;"	m
+regfile_tb	RegFile/regfile_tb.v	/^module regfile_tb();$/;"	m
+regfileins	mipssingleclk.v	/^regfile #(.DWIDTH(REGDWIDTH)) regfileins ($/;"	i	module:mipssingleclk
+register	RegFile/regfile.v	/^reg [DWIDTH-1:0] register [0:31];$/;"	r	module:regfile
+regsrc	MUX/ALUAltSrcMUX/alualtsrcmux.v	/^module alualtsrcmux( input wire [31:0] regsrc,$/;"	p	module:alualtsrcmux
+regsrc	MUX/ALUSrcMUX/alusrcmux.v	/^module alusrcmux( input wire [31:0] regsrc,$/;"	p	module:alusrcmux
+regsrcmux	MUX/RegSrcMUX/regsrcmux.v	/^module regsrcmux( input wire [31:0] memdata,$/;"	m
+regsrcmuxins	mipssingleclk.v	/^regsrcmux regsrcmuxins ($/;"	i	module:mipssingleclk
+s0	RegFile/regindexdef.v	/^`define s0 16$/;"	c
+s1	RegFile/regindexdef.v	/^`define s1 17$/;"	c
+s2	RegFile/regindexdef.v	/^`define s2 18$/;"	c
+s3	RegFile/regindexdef.v	/^`define s3 19$/;"	c
+s4	RegFile/regindexdef.v	/^`define s4 20$/;"	c
+s5	RegFile/regindexdef.v	/^`define s5 21$/;"	c
+s6	RegFile/regindexdef.v	/^`define s6 22$/;"	c
+s7	RegFile/regindexdef.v	/^`define s7 23$/;"	c
+signedA	ALU/alu.v	/^wire signed [31:0] signedA; \/\/ signed operand A$/;"	n	module:alu
+signedA	ALU/alu_tb.v	/^reg signed [31:0] signedA;$/;"	r	module:alu_tb
+signedB	ALU/alu.v	/^wire signed [31:0] signedB; \/\/ signed operand B$/;"	n	module:alu
+signedB	ALU/alu_tb.v	/^reg signed [31:0] signedB;$/;"	r	module:alu_tb
+signedextend	SignedExtend/signedextend.v	/^module signedextend #(parameter INWIDTH = 16, parameter OUTWIDTH = 32)($/;"	m
+signedextend_tb	SignedExtend/signedextend_tb.v	/^module signedextend_tb();$/;"	m
+signedout	ALU/alu.v	/^reg signed [31:0] signedout;$/;"	r	module:alu
+signedout	ALU/alu_tb.v	/^wire signed [31:0] signedout;$/;"	n	module:alu_tb
+snegative	ALU/alu_tb.v	/^wire szero, soverflow, snegative;$/;"	n	module:alu_tb
+soverflow	ALU/alu_tb.v	/^wire szero, soverflow, snegative;$/;"	n	module:alu_tb
+sp	RegFile/regindexdef.v	/^`define sp 29$/;"	c
+sram	SRAM/sram.v	/^module sram (clk, address, din, dout, rd, wr, cs);$/;"	m
+sram_tb	SRAM/sram_tb.v	/^module sram_tb();$/;"	m
+subtract	ALU/alu_tb.v	/^task subtract;$/;"	t	module:alu_tb
+subtractu	ALU/alu_tb.v	/^task subtractu;$/;"	t	module:alu_tb
+szero	ALU/alu_tb.v	/^wire szero, soverflow, snegative;$/;"	n	module:alu_tb
+t0	RegFile/regindexdef.v	/^`define t0 8$/;"	c
+t1	RegFile/regindexdef.v	/^`define t1 9$/;"	c
+t2	RegFile/regindexdef.v	/^`define t2 10$/;"	c
+t3	RegFile/regindexdef.v	/^`define t3 11$/;"	c
+t4	RegFile/regindexdef.v	/^`define t4 12$/;"	c
+t5	RegFile/regindexdef.v	/^`define t5 13$/;"	c
+t6	RegFile/regindexdef.v	/^`define t6 14$/;"	c
+t7	RegFile/regindexdef.v	/^`define t7 15$/;"	c
+t8	RegFile/regindexdef.v	/^`define t8 24$/;"	c
+t9	RegFile/regindexdef.v	/^`define t9 25$/;"	c
+tempout	ALU/alu.v	/^reg [31:0] tempout; $/;"	r	module:alu
+v0	RegFile/regindexdef.v	/^`define v0 2$/;"	c
+v1	RegFile/regindexdef.v	/^`define v1 3$/;"	c
+wr	RegFile/regfile.v	/^input wire wr, \/\/ write to register signal, active HIGH$/;"	p	module:regfile
+wr	RegFile/regfile_tb.v	/^reg clk, wr;$/;"	r	module:regfile_tb
+wr	SRAM/sram.v	/^input wire wr;$/;"	p	module:sram
+wr	SRAM/sram_tb.v	/^reg clk, rd, wr, cs;$/;"	r	module:sram_tb
+wraddr	RegFile/regfile.v	/^input wire [4:0] wraddr, \/\/ write register address$/;"	p	module:regfile
+wraddr	RegFile/regfile_tb.v	/^reg [4:0] wraddr;$/;"	r	module:regfile_tb
+xortask	ALU/alu_tb.v	/^task xortask;$/;"	t	module:alu_tb
+zero	ALU/alu.v	/^output reg zero, \/\/ zero flag to indicate result is zero, active HIGH$/;"	p	module:alu
+zero	ALU/alu_tb.v	/^wire zero, overflow, negative;$/;"	n	module:alu_tb
+zero	BranchCtrl/branchctrl.v	/^module branchctrl( input wire zero, \/\/ flag from ALU$/;"	p	module:branchctrl
+zero	BranchCtrl/branchctrl_tb.v	/^reg zero, negative, overflow, jump, branchbeq, branchbne, branchblez, branchbgtz;$/;"	r	module:branchctrl_tb
+zero	RegFile/regindexdef.v	/^`define zero 0$/;"	c
+zeroins	mipssingleclk.v	/^wire zeroins, negativeins, overflowins;$/;"	n	module:mipssingleclk

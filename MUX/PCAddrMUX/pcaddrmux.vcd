@@ -1,0 +1,58 @@
+$date
+	Fri Oct  8 20:27:42 2021
+$end
+$version
+	Icarus Verilog
+$end
+$timescale
+	1s
+$end
+$scope module pcaddrmux_tb $end
+$var wire 1 ! pcload $end
+$var wire 32 " pcaddr [31:0] $end
+$var reg 32 # branchaddr [31:0] $end
+$var reg 2 $ branchcode [1:0] $end
+$var reg 32 % jumpaddr [31:0] $end
+$scope module dut $end
+$var wire 32 & branchaddr [31:0] $end
+$var wire 2 ' branchcode [1:0] $end
+$var wire 32 ( jumpaddr [31:0] $end
+$var reg 32 ) pcaddr [31:0] $end
+$var reg 1 ! pcload $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+#0
+$dumpvars
+bx )
+bx (
+b0 '
+bx &
+bx %
+b0 $
+bx #
+bx "
+0!
+$end
+#4
+b10010001101000101011001111000 %
+b10010001101000101011001111000 (
+#8
+b10000111011001010100001100100001 #
+b10000111011001010100001100100001 &
+#12
+1!
+b10010001101000101011001111000 "
+b10010001101000101011001111000 )
+b1 $
+b1 '
+#16
+b10000111011001010100001100100001 "
+b10000111011001010100001100100001 )
+b10 $
+b10 '
+#20
+0!
+b11 $
+b11 '
+#21

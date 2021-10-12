@@ -1,0 +1,8 @@
+// this file is supposed to be read into instruction memory during test
+// this file tests I-type beq instruction.
+001000_00000_00010_1000000000100010 // addi $2 $0 -30, store -30 into $2
+001000_00000_00011_1000000000100010 // addi $3 $0 -30, store -30 into $3
+000100_00010_00011_0000000000001111 // beq $2 $3 15, if $2 is equal to $3 jump to 8+4+60
+@00000012
+101011_00000_00010_0000000000010000 // sw $2 16($zero), mem[4]=$2
+010000_00000000000000000000000000 // fin, halt cpu

@@ -1,0 +1,4 @@
+./mipssingleclk_tb.v
+-y ./COUNTER
+-y ./ALUCtrl
++incdir+./RegFile+./ALUCtrl+./ALU+./BranchCtrl+./CtrlUnit

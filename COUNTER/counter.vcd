@@ -1,0 +1,174 @@
+$date
+	Thu Sep 23 22:30:33 2021
+$end
+$version
+	Icarus Verilog
+$end
+$timescale
+	1s
+$end
+$scope module counter_tb $end
+$var wire 5 ! data_out [4:0] $end
+$var reg 1 " clk $end
+$var reg 1 # clr $end
+$var reg 5 $ data_in [4:0] $end
+$var reg 1 % en $end
+$var reg 1 & load $end
+$scope module dut $end
+$var wire 1 " clk $end
+$var wire 1 # clr $end
+$var wire 5 ' data_in [4:0] $end
+$var wire 1 % en $end
+$var wire 1 & load $end
+$var reg 5 ( data_out [4:0] $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+#0
+$dumpvars
+b0 (
+b0 '
+0&
+1%
+b0 $
+0#
+0"
+b0 !
+$end
+#4
+1"
+#7
+1#
+#8
+0"
+#12
+b100 !
+b100 (
+1"
+#16
+0"
+#20
+b1000 !
+b1000 (
+1"
+#24
+0"
+#28
+b1100 !
+b1100 (
+1"
+#32
+0"
+#36
+b10000 !
+b10000 (
+1"
+#40
+0"
+#44
+b10100 !
+b10100 (
+1"
+#48
+0"
+#52
+b11000 !
+b11000 (
+1"
+#56
+0"
+#60
+b11100 !
+b11100 (
+1"
+#64
+0"
+#68
+b0 !
+b0 (
+1"
+#72
+0"
+#75
+0#
+#76
+1"
+#77
+1#
+#80
+0"
+#84
+b100 !
+b100 (
+1"
+#88
+0"
+#92
+b1000 !
+b1000 (
+1"
+#93
+0%
+#96
+0"
+#100
+1"
+#101
+1%
+#102
+b1000 $
+b1000 '
+#104
+0"
+#108
+b1100 !
+b1100 (
+1"
+#112
+0"
+#114
+1&
+#116
+b1000 !
+b1000 (
+1"
+#120
+0"
+#124
+1"
+#126
+0&
+#128
+0"
+#132
+b1100 !
+b1100 (
+1"
+#136
+0"
+#140
+b10000 !
+b10000 (
+1"
+#142
+b11110 $
+b11110 '
+#143
+1&
+#144
+0"
+#148
+b11110 !
+b11110 (
+1"
+#151
+0&
+#152
+0"
+#156
+b0 !
+b0 (
+1"
+#160
+0"
+#163

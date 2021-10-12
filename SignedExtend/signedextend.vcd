@@ -1,0 +1,41 @@
+$date
+	Fri Sep 24 17:23:30 2021
+$end
+$version
+	Icarus Verilog
+$end
+$timescale
+	1s
+$end
+$scope module signedextend_tb $end
+$var wire 8 ! dout [7:0] $end
+$var reg 4 " din [3:0] $end
+$scope module dut $end
+$var wire 4 # din [3:0] $end
+$var reg 8 $ dout [7:0] $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+#0
+$dumpvars
+b0 $
+b0 #
+b0 "
+b0 !
+$end
+#1
+b11 !
+b11 $
+b11 "
+b11 #
+#3
+b11111000 !
+b11111000 $
+b1000 "
+b1000 #
+#5
+b11111101 !
+b11111101 $
+b1101 "
+b1101 #
+#7

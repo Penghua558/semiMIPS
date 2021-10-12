@@ -1,0 +1,104 @@
+$date
+	Mon Sep 27 15:38:35 2021
+$end
+$version
+	Icarus Verilog
+$end
+$timescale
+	1s
+$end
+$scope module branchctrl_tb $end
+$var wire 2 ! out [1:0] $end
+$var reg 1 " branchbeq $end
+$var reg 1 # branchbgtz $end
+$var reg 1 $ branchblez $end
+$var reg 1 % branchbne $end
+$var reg 1 & jump $end
+$var reg 1 ' negative $end
+$var reg 1 ( overflow $end
+$var reg 1 ) zero $end
+$scope module dut $end
+$var wire 1 " branchbeq $end
+$var wire 1 # branchbgtz $end
+$var wire 1 $ branchblez $end
+$var wire 1 % branchbne $end
+$var wire 1 & jump $end
+$var wire 1 ' negative $end
+$var wire 1 ( overflow $end
+$var wire 1 ) zero $end
+$var reg 2 * out [1:0] $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+#0
+$dumpvars
+b0 *
+0)
+0(
+0'
+0&
+0%
+0$
+0#
+0"
+b0 !
+$end
+#4
+1)
+#8
+b1 !
+b1 *
+1&
+#12
+b0 !
+b0 *
+0&
+#16
+b10 !
+b10 *
+1"
+#20
+b0 !
+b0 *
+0"
+#24
+1%
+#28
+b10 !
+b10 *
+0)
+#32
+b10 !
+b10 *
+1(
+#36
+b0 !
+b0 *
+0%
+#40
+1$
+#44
+b10 !
+b10 *
+1)
+#48
+b0 !
+b0 *
+0)
+#52
+b10 !
+b10 *
+1'
+#56
+b0 !
+b0 *
+0$
+#60
+1#
+#64
+0(
+#68
+b10 !
+b10 *
+0'
+#69

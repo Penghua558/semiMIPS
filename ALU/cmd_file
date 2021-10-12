@@ -1,0 +1,3 @@
+alu.v
+alu_tb.v
+./aluopdef.v
