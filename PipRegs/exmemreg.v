@@ -15,7 +15,8 @@ module exmemreg ( clk, memwrin, memrdin, bbnein, bbeqin, bblezin, bbgtzin,
                     aluoutin, zeroin, negativein, overflowin,
                     regdstmuxin, regdata2in, branaddrin, jmpaddrin,
                     aluoutout, zeroout, negativeout, overflowout,
-                    regdstmuxout, regdata2out, branaddrout, jmpaddrout);
+                    regdstmuxout, regdata2out, branaddrout, jmpaddrout,
+                    rtin, rtout);
 parameter AWIDTH = 32;
 parameter DWIDTH = 32;
 
@@ -38,6 +39,8 @@ output reg [4:0] regdstmuxout;
 output reg [DWIDTH-1:0] regdata2out;
 output reg [AWIDTH-1:0] branaddrout;
 output reg [AWIDTH-1:0] jmpaddrout;
+input wire [4:0] rtin;
+output reg [4:0] rtout;
 
 wbreg wbregins (clk, memtoregin, regwrin, memtoregout, regwrout);
 memreg memregins (clk, memwrin, memrdin, bbnein, bbeqin, bblezin, 
@@ -52,6 +55,7 @@ reg [4:0] regdstmux;
 reg [DWIDTH-1:0] regdata2;
 reg [AWIDTH-1:0] branaddr;
 reg [AWIDTH-1:0] jmpaddr;
+reg [4:0] rt;
 
 always @(aluout) begin
     aluoutout = aluout;
@@ -85,6 +89,10 @@ always @(jmpaddr) begin
     jmpaddrout = jmpaddr;
 end
 
+always @(rt) begin
+    rtout = rt;
+end
+
 always @(posedge clk) begin
     aluout <= aluoutin;
     zero <= zeroin;
@@ -94,6 +102,7 @@ always @(posedge clk) begin
     regdata2 <= regdata2in;
     branaddr <= branaddrin;
     jmpaddr <= jmpaddrin;
+    rt <= rtin;
 end
 
 endmodule
