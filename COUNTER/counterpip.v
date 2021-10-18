@@ -1,5 +1,5 @@
 /*
-* File Name: pc.v
+* File Name: counterpip.v
 * Function: this is a synchronous counter, with parameterimized input data
 * width and count range and synchronous load pin, asynchronous clear pin,
 * active LOW,
