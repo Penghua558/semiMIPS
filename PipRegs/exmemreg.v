@@ -13,10 +13,10 @@ module exmemreg ( clk, memwrin, memrdin, bbnein, bbeqin, bblezin, bbgtzin,
                     memtoregin, regwrin,
                     memtoregout, regwrout,
                     aluoutin, zeroin, negativein, overflowin,
-                    regdstmuxin, regdata2in, branaddrin, jmpaddrin,
+                    regdstmuxin, regdata2in, branaddrin, jmpaddrin, pcnextin,
                     aluoutout, zeroout, negativeout, overflowout,
                     regdstmuxout, regdata2out, branaddrout, jmpaddrout,
-                    rtin, rtout);
+                    rtin, rtout, pcnextout);
 parameter AWIDTH = 32;
 parameter DWIDTH = 32;
 
@@ -33,6 +33,7 @@ input wire [4:0] regdstmuxin;
 input wire [DWIDTH-1:0] regdata2in;
 input wire [AWIDTH-1:0] branaddrin;
 input wire [AWIDTH-1:0] jmpaddrin;
+input wire [AWIDTH-1:0] pcnextin;
 output reg [DWIDTH-1:0] aluoutout;
 output reg zeroout, negativeout, overflowout;
 output reg [4:0] regdstmuxout;
@@ -41,6 +42,7 @@ output reg [AWIDTH-1:0] branaddrout;
 output reg [AWIDTH-1:0] jmpaddrout;
 input wire [4:0] rtin;
 output reg [4:0] rtout;
+output reg [AWIDTH-1:0] pcnextout;
 
 wbreg wbregins (clk, memtoregin, regwrin, memtoregout, regwrout);
 memreg memregins (clk, memwrin, memrdin, bbnein, bbeqin, bblezin, 
@@ -56,6 +58,7 @@ reg [DWIDTH-1:0] regdata2;
 reg [AWIDTH-1:0] branaddr;
 reg [AWIDTH-1:0] jmpaddr;
 reg [4:0] rt;
+reg [AWIDTH-1:0] pcnext;
 
 always @(aluout) begin
     aluoutout = aluout;
@@ -93,6 +96,10 @@ always @(rt) begin
     rtout = rt;
 end
 
+always @(pcnext) begin
+    pcnextout = pcnext;
+end
+
 always @(posedge clk) begin
     aluout <= aluoutin;
     zero <= zeroin;
@@ -103,6 +110,7 @@ always @(posedge clk) begin
     branaddr <= branaddrin;
     jmpaddr <= jmpaddrin;
     rt <= rtin;
+    pcnext <= pcnextin;
 end
 
 endmodule

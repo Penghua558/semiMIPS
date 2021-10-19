@@ -26,6 +26,8 @@
 `include "./PipRegs/idexreg.v"
 `include "./MUX/CtrlSigMUX/ctrlsigmux.v"
 `include "./MUX/ALUForwardingMUX/aluforwardingmux.v"
+`include "./PipRegs/exmemreg.v"
+`include "./MUX/MemDataMUX/memdatamux.v"
 
 module mipspipeline( input wire clk,
                        input wire pcclr,
@@ -100,8 +102,8 @@ ifidreg #(.INSWIDTH(IFIDINSWIDTH), .AWIDTH(IFIDAWIDTH))
 
 parameter REGDWIDTH = INSMEMDWIDTH;
 
-// write port for register file module, this is a control signal
-wire ctrlregwr;
+// this control signal is supplied by MEM/WB pipeline register
+wire memwbregwrout;
 // register file data input instance
 wire [REGDWIDTH-1:0] regdinins;
 wire [4:0] regwraddrins;
@@ -111,7 +113,7 @@ wire [REGDWIDTH-1:0] regdout2ins;
 
 regfile #(.DWIDTH(REGDWIDTH)) regfileins (
         .clk(clk),
-        .wr(ctrlregwr),
+        .wr(memwbregwrout),
         .rdaddr1(ifidinsout[25:21]),
         .rdaddr2(ifidinsout[20:16]),
         .wraddr(regwraddrins),
@@ -301,22 +303,193 @@ regdstmux regdstmuxins (.rdstaddr(idexrdout),
 wire [1:0] foraluforward1;
 wire [1:0] foraluforward2;
 
-wire [31:0] aluresult;
+wire [31:0] exmemaluresultout;
 wire [31:0] aluforwardout1;
 wire [31:0] aluforwardout2;
 
 // this instance is placed at ALU's 1st operand
 aluforwardingmux aluforwardingmuxins1 (.aluforward(foraluforward1),
                                        .regdata(alualtsrcout),
-                                       .aluresult(aluresult),
+                                       .aluresult(exmemaluresultout),
                                        .dmresult(regdinins),
                                        .out(aluforwardout1)); 
 
 // this instance is placed at ALU's 2nd operand
 aluforwardingmux aluforwardingmuxins2 (.aluforward(foraluforward2),
                                        .regdata(alusrcout),
-                                       .aluresult(aluresult),
+                                       .aluresult(exmemaluresultout),
                                        .dmresult(regdinins),
                                        .out(aluforwardout2));
+
+
+// ALU Control Unit instance
+// instance output port
+wire [3:0] aluctrlout;
+
+aluctrl aluctrlins (.aluop(idexaluopout),
+                    .funct(idexfunctout),
+                    .opcodeforalu(aluctrlout));
+
+// ALU instance
+// instance output ports
+wire [31:0] aluresult;
+wire aluzero, aluoverflow, alunegative;
+
+alu aluins (.op(aluctrlout),
+            .A(aluforwardout1),
+            .B(aluforwardout2),
+            .out(aluresult),
+            .zero(aluzero),
+            .overflow(aluoverflow),
+            .negative(alunegative));
+
+
+
+// EX/MEM pipeline register instance
+// MEM control signals output ports
+wire exmemmemwrout, exmemmemrdout;
+wire exmembbneout, exmembbeqout, exmembblezout, exmembbgtzout;
+wire exmemjumpout;
+
+// WB control signals output ports
+wire [1:0] exmemmemtoregout;
+wire exmemregwrout;
+
+wire exmemzeroout, exmemnegativeout, exmemoverflowout;
+wire [4:0] exmemregdstmuxout;
+wire [31:0] exmemregdata2out;
+wire [31:0] exmembranaddrout;
+wire [31:0] exmemjmpaddrout;
+wire [4:0] exmemrtout;
+wire [31:0] exmempcnextout;
+
+exmemreg exmemregins (.clk(clk),
+                      .memwrin(idexmemwrout),
+                      .memrdin(idexmemrdout),
+                      .bbnein(idexbbneout),
+                      .bblezin(idexbblezout),
+                      .bbgtzin(idexbbgtzout),
+                      .jumpin(idexjumpout),
+                      .memwrout(exmemmemwrout),
+                      .memrdout(exmemmemrdout),
+                      .bbneout(exmembbneout),
+                      .bbeqout(exmembbeqout),
+                      .bblezout(exmembblezout),
+                      .bbgtzout(exmembbgtzout),
+                      .jumpout(exmemjumpout),
+                      .memtoregin(idexmemtoregout),
+                      .regwrin(idexregwrout),
+                      .memtoregout(exmemmemtoregout),
+                      .regwrout(exmemregwrout),
+                      .aluoutin(aluresult),
+                      .zeroin(aluzero),
+                      .negativein(alunegative),
+                      .overflowin(aluoverflow),
+                      .regdstmuxin(regdstout),
+                      .regdata2in(idexregdata2out),
+                      .branaddrin(idexbranaddrout),
+                      .jmpaddrin(idexjmpaddrout),
+                      .pcnextin(idexpcnextout),
+                      .rtin(idexrtout),
+                      .aluoutout(exmemaluresultout),
+                      .zeroout(exmemzeroout),
+                      .negativeout(exmemnegativeout), 
+                      .overflowout(exmemoverflowout),
+                      .regdstmuxout(exmemregdstmuxout),
+                      .regdata2out(exmemregdata2out),
+                      .branaddrout(exmembranaddrout),
+                      .jmpaddrout(exmemjmpaddrout),
+                      .rtout(exmemrtout),
+                      .pcnextout(exmempcnextout));
+
+
+
+
+// MemDataMUX instance
+// select pin port, this signal is controled by forwarding unit
+wire formemdata;
+
+wire [31:0] memwbdmdataout;
+wire [31:0] memdatamuxout;
+
+memdatamux memdatamuxins (.regdata(exmemregdata2out),
+                          .memdata(formemdata),
+                          .dmdata(memwbdmdataout),
+                          .out(memdatamuxout));
+
+
+// Data Memory instance
+parameter DMDEPTH = 10240;
+
+// data output port
+wire [31:0] dmdataout;
+
+sram #(.DEPTH(DMDEPTH)) datamem (.clk(clk),
+                                 .address(exmemaluresultout),
+                                 .din(memdatamuxout),
+                                 .dout(dmdataout),
+                                 .rd(exmemmemrdout),
+                                 .wr(exmemmemwrout),
+                                 .cs(1'b1));
+
+
+
+// Branch and Jump Control Unit instance
+// output port
+wire [1:0] branchctrlout;
+
+branchctrl branctrlins (.zero(exmemzeroout),
+                        .negative(exmemnegativeout),
+                        .overflow(exmemoverflowout),
+                        .jump(exmemjumpout),
+                        .branchbeq(exmembbeqout),
+                        .branchbne(exmembbneout),
+                        .branchblez(exmembblezout),
+                        .branchbgtz(exmembbgtzout),
+                        .out(branchctrlout));
+
+
+
+// PCAddrMUX instance
+pcaddrmux pcaddrmuxins (.jumpaddr(exmemjmpaddrout),
+                        .branchaddr(exmembranaddrout),
+                        .branchcode(branchctrlout),
+                        .pcload(pcload),
+                        .pcaddr(pcaddress));
+
+
+
+// MEM/WB pipeline register
+// data output ports
+wire [1:0] memwbmemtoregout;
+wire [31:0] memwbaluoutout;
+wire [31:0] memwbpcnextout;
+wire memwbnegativeout;
+
+memwbreg memwbregins (.clk(clk),
+                      .memtoregin(exmemmemtoregout),
+                      .regwrin(exmemregwrout),
+                      .memtoregout(memwbmemtoregout),
+                      .regwrout(memwbregwrout),
+                      .regdstmuxin(exmemregdstmuxout),
+                      .aluoutin(exmemaluresultout),
+                      .dmdatain(dmdataout),
+                      .pcnextin(exmempcnextout),
+                      .negativein(exmemnegativeout),
+                      .regdstmuxout(regwraddrins),
+                      .aluoutout(memwbaluoutout),
+                      .dmdataout(memwbdmdataout),
+                      .pcnextout(memwbpcnextout),
+                      .negativeout(memwbnegativeout));
+
+
+
+// RegSrcMUX instance
+regsrcmux regsrcmuxins (.memdata(memwbdmdataout),
+                        .aludata(memwbaluoutout),
+                        .pcdata(memwbpcnextout),
+                        .negative(memwbnegativeout),
+                        .memtoreg(memwbmemtoregout),
+                        .regdata(regdinins));
 
 endmodule
