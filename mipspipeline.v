@@ -28,6 +28,8 @@
 `include "./MUX/ALUForwardingMUX/aluforwardingmux.v"
 `include "./PipRegs/exmemreg.v"
 `include "./MUX/MemDataMUX/memdatamux.v"
+`include "./HazardDetectionUnit/hazarddetectionunit.v"
+`include "./ForwardingUnit/forwardingunit.v"
 
 module mipspipeline( input wire clk,
                        input wire pcclr,
@@ -491,5 +493,49 @@ regsrcmux regsrcmuxins (.memdata(memwbdmdataout),
                         .negative(memwbnegativeout),
                         .memtoreg(memwbmemtoregout),
                         .regdata(regdinins));
+
+
+
+// Control Unit instance
+ctrlunit ctrlunitins (.opcode(ifidinsout),
+                      .RegDst(ctrlregdst),
+                      .RegWr(ctrlregwr),
+                      .ALUSrc(ctrlalusrc),
+                      .MemWr(ctrlmemwr),
+                      .MemRd(ctrlmemrd),
+                      .MemtoReg(ctrlmemtoreg),
+                      .Jump(ctrljump),
+                      .BBeq(ctrlbbeq),
+                      .BBne(ctrlbbne),
+                      .BBlez(ctrlbblez),
+                      .BBgtz(ctrlbbgtz),
+                      .ALUOp(ctrlaluop),
+                      .ALUAltSrc(ctrlalualtsrc),
+                      .Fin(fin),
+                      .PCEn(ctrlpcen));
+
+
+// Forwarding Unit instance
+forwardingunit forwardingunitins (.exmemregwr(exmemregwrout),
+                                  .exmemregmuxout(exmemregdstmuxout),
+                                  .idexrs(idexrsout),
+                                  .idexrt(idexrtout),
+                                  .memwbregwr(memwbregwrout),
+                                  .memwbregmuxout(regwraddrins),
+                                  .exmemrt(exmemrtout),
+                                  .exmemmemwr(exmemmemwrout),
+                                  .aluforward1(foraluforward1),
+                                  .aluforward2(foraluforward2),
+                                  .memdata(formemdata));
+
+
+
+// Hazard Detection Unit instance
+hazarddetectionunit hazarddetectionunitins (.idexrt(idexrtout),
+                                            .ifidrs(ifidinsout[25:21]),
+                                            .ifidrt(ifidinsout[20:16]),
+                                            .idexmemrd(idexmemrdout),
+                                            .pcen(hazpcen),
+                                            .ctrlsig(hazctrlsig));
 
 endmodule
