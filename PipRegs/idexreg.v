@@ -12,8 +12,8 @@ module idexreg ( clk, alualtsrcin, alusrcin, regdstin, aluopin,
                 jumpin, 
                 memwrout, memrdout, bbneout, bbeqout, bblezout, 
                 bbgtzout, jumpout, 
-                memtoregin, regwrin,
-                memtoregout, regwrout,
+                memtoregin, regwrin, finin,
+                memtoregout, regwrout, finout,
                 regdata1in, regdata2in, signexin, functin, rtin, rsin,
                 rdin, pcnextin, branaddrin, jmpaddrin,
                 regdata1out, regdata2out, signexout, functout, rtout,
@@ -57,8 +57,11 @@ output reg [4:0] rdout;
 output reg [AWIDTH-1:0] pcnextout;
 output reg [AWIDTH-1:0] branaddrout;
 output reg [AWIDTH-1:0] jmpaddrout;
+input wire finin;
+output wire finout;
 
-wbreg wbregins (clk, memtoregin, regwrin, memtoregout, regwrout);
+wbreg wbregins (clk, memtoregin, regwrin, finin, 
+                memtoregout, regwrout, finout);
 memreg memregins (clk, memwrin, memrdin, bbnein, bbeqin, bblezin,
                     bbgtzin, jumpin, memwrout, memrdout, bbneout,
                     bbeqout, bblezout, bbgtzout, jumpout);

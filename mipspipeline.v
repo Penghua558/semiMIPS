@@ -156,6 +156,7 @@ wire idexjumpin, idexjumpout;
 wire [1:0] idexmemtoregin;
 wire [1:0] idexmemtoregout;
 wire idexregwrin, idexregwrout;
+wire idexfinin, idexfinout;
 
 wire [IDEXDWIDTH-1:0] idexregdata1out;
 wire [IDEXDWIDTH-1:0] idexregdata2out;
@@ -201,8 +202,10 @@ idexreg #(.DWIDTH(IDEXDWIDTH), .AWIDTH(IDEXAWIDTH))
                 .jumpout(idexjumpout),
                 .memtoregin(idexmemtoregin),
                 .regwrin(idexregwrin),
+                .finin(idexfinin),
                 .memtoregout(idexmemtoregout),
                 .regwrout(idexregwrout),
+                .finout(idexfinout),
                 .regdata1in(regdout1ins),
                 .regdata2in(regdout2ins),
                 .signexin(exdout),
@@ -242,6 +245,7 @@ wire ctrlbbgtz;
 wire ctrljump;
 wire [1:0] ctrlmemtoreg;
 wire ctrlregwr;
+wire ctrlfin;
 
 ctrlsigmux ctrlsigmuxins (.ctrlsig(hazctrlsig),
                           .ctrlalualtsrc(ctrlalualtsrc),
@@ -257,6 +261,7 @@ ctrlsigmux ctrlsigmuxins (.ctrlsig(hazctrlsig),
                           .ctrljump(ctrljump),
                           .ctrlmemtoreg(ctrlmemtoreg),
                           .ctrlregwr(ctrlregwr),
+                          .ctrlfin(ctrlfin),
                           .alualtsrc(idexalualtsrcin),
                           .alusrc(idexalusrcin),
                           .regdst(idexregdstin),
@@ -269,7 +274,8 @@ ctrlsigmux ctrlsigmuxins (.ctrlsig(hazctrlsig),
                           .bbgtz(idexbbgtzin),
                           .jump(idexjumpin),
                           .memtoreg(idexmemtoregin),
-                          .regwr(idexregwrin));
+                          .regwr(idexregwrin),
+                          .fin(idexfinin) );
 
 // ALUAltSrcMUX instance
 // mux output port
@@ -356,6 +362,7 @@ wire exmemjumpout;
 // WB control signals output ports
 wire [1:0] exmemmemtoregout;
 wire exmemregwrout;
+wire exmemfinout;
 
 wire exmemzeroout, exmemnegativeout, exmemoverflowout;
 wire [4:0] exmemregdstmuxout;
@@ -381,8 +388,10 @@ exmemreg exmemregins (.clk(clk),
                       .jumpout(exmemjumpout),
                       .memtoregin(idexmemtoregout),
                       .regwrin(idexregwrout),
+                      .finin(idexfinout),
                       .memtoregout(exmemmemtoregout),
                       .regwrout(exmemregwrout),
+                      .finout(exmemfinout),
                       .aluoutin(aluresult),
                       .zeroin(aluzero),
                       .negativein(alunegative),
@@ -471,8 +480,10 @@ wire memwbnegativeout;
 memwbreg memwbregins (.clk(clk),
                       .memtoregin(exmemmemtoregout),
                       .regwrin(exmemregwrout),
+                      .finin(exmemfinout),
                       .memtoregout(memwbmemtoregout),
                       .regwrout(memwbregwrout),
+                      .finout(fin),
                       .regdstmuxin(exmemregdstmuxout),
                       .aluoutin(exmemaluresultout),
                       .dmdatain(dmdataout),
@@ -511,7 +522,7 @@ ctrlunit ctrlunitins (.opcode(ifidinsout),
                       .BBgtz(ctrlbbgtz),
                       .ALUOp(ctrlaluop),
                       .ALUAltSrc(ctrlalualtsrc),
-                      .Fin(fin),
+                      .Fin(ctrlfin),
                       .PCEn(ctrlpcen));
 
 

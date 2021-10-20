@@ -10,8 +10,8 @@ module exmemreg ( clk, memwrin, memrdin, bbnein, bbeqin, bblezin, bbgtzin,
                     jumpin,
                     memwrout, memrdout, bbneout, bbeqout, bblezout,
                     bbgtzout, jumpout,
-                    memtoregin, regwrin,
-                    memtoregout, regwrout,
+                    memtoregin, regwrin, finin,
+                    memtoregout, regwrout, finout,
                     aluoutin, zeroin, negativein, overflowin,
                     regdstmuxin, regdata2in, branaddrin, jmpaddrin, pcnextin,
                     aluoutout, zeroout, negativeout, overflowout,
@@ -43,8 +43,11 @@ output reg [AWIDTH-1:0] jmpaddrout;
 input wire [4:0] rtin;
 output reg [4:0] rtout;
 output reg [AWIDTH-1:0] pcnextout;
+input wire finin;
+output wire finout;
 
-wbreg wbregins (clk, memtoregin, regwrin, memtoregout, regwrout);
+wbreg wbregins (clk, memtoregin, regwrin, finin,
+                memtoregout, regwrout, finout);
 memreg memregins (clk, memwrin, memrdin, bbnein, bbeqin, bblezin, 
                     bbgtzin, jumpin,
                     memwrout, memrdout, bbneout, bbeqout, bblezout,

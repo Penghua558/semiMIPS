@@ -27,6 +27,7 @@ module ctrlsigmux ( input wire ctrlsig,
                     input wire ctrljump,
                     input wire [1:0] ctrlmemtoreg,
                     input wire ctrlregwr,
+                    input wire ctrlfin,
                     output reg alualtsrc,
                     output reg [1:0] alusrc,
                     output reg [1:0] regdst,
@@ -39,7 +40,8 @@ module ctrlsigmux ( input wire ctrlsig,
                     output reg bbgtz,
                     output reg jump,
                     output reg [1:0] memtoreg,
-                    output reg regwr );
+                    output reg regwr,
+                    output reg fin );
 
 always @(*) begin
     case (ctrlsig)
@@ -57,6 +59,7 @@ always @(*) begin
                 jump = ctrljump;
                 memtoreg = ctrlmemtoreg;
                 regwr = ctrlregwr;
+                fin = ctrlfin;
               end
         1'b1: begin
                 alualtsrc = 1'b0;
@@ -72,6 +75,7 @@ always @(*) begin
                 jump = 1'b0;
                 memtoreg = 2'b00;
                 regwr = 1'b0;
+                fin = 1'b0;
               end
     endcase
 end
