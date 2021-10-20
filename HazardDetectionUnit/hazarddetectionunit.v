@@ -13,15 +13,41 @@ module hazarddetectionunit ( input wire [4:0] idexrt,
                              output reg pcen,
                              output reg ctrlsig );
 
-always @(*) begin
+// we deploy 2 internal variables, unit's output will first be passed to
+// these variables, then through a simple x check, if the variables' content
+// is x, then we modify unit's actual outputs to known states. This is due
+// to the same reason we use insert Unstalling Unit bewtween PC and Control
+// Unit.
+reg pcentmp, ctrlsigtmp;
+
+initial begin
     pcen = 1'b1;
     ctrlsig = 1'b0;
-    
+end
+
+always @(pcentmp, ctrlsigtmp) begin
+    if (pcentmp === 1'bx) begin
+        pcen = 1'b1;
+    end else begin
+        pcen = pcentmp;
+    end
+
+    if (ctrlsigtmp === 1'bx) begin
+        ctrlsig = 1'b0;
+    end else begin
+        ctrlsig = ctrlsigtmp;
+    end
+end
+
+always @(*) begin
     // hazard detection
     if (idexmemrd &&
         ((idexrt == ifidrt) || (idexrt == ifidrs))) begin
-        pcen = 1'b0;
-        ctrlsig = 1'b1;
+        pcentmp = 1'b0;
+        ctrlsigtmp = 1'b1;
+    end else begin
+        pcentmp = 1'b1;
+        ctrlsigtmp = 1'b0;
     end
 end
 

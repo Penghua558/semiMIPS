@@ -6,6 +6,9 @@
 * address.
 */
 
+/* `include "./wbreg.v" */
+/* `include "./memreg.v" */
+
 module exmemreg ( clk, memwrin, memrdin, bbnein, bbeqin, bblezin, bbgtzin,
                     jumpin,
                     memwrout, memrdout, bbneout, bbeqout, bblezout,

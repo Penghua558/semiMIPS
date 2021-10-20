@@ -24,6 +24,7 @@
 `include "./Unstalling/unstallingunit.v"
 `include "./PipRegs/ifidreg.v"
 `include "./PipRegs/idexreg.v"
+`include "./PipRegs/memwbreg.v"
 `include "./MUX/CtrlSigMUX/ctrlsigmux.v"
 `include "./MUX/ALUForwardingMUX/aluforwardingmux.v"
 `include "./PipRegs/exmemreg.v"
@@ -508,7 +509,7 @@ regsrcmux regsrcmuxins (.memdata(memwbdmdataout),
 
 
 // Control Unit instance
-ctrlunit ctrlunitins (.opcode(ifidinsout),
+ctrlunit ctrlunitins (.opcode(ifidinsout[31:26]),
                       .RegDst(ctrlregdst),
                       .RegWr(ctrlregwr),
                       .ALUSrc(ctrlalusrc),
@@ -532,6 +533,7 @@ forwardingunit forwardingunitins (.exmemregwr(exmemregwrout),
                                   .idexrs(idexrsout),
                                   .idexrt(idexrtout),
                                   .memwbregwr(memwbregwrout),
+                                  .idexmemwr(idexmemwrout),
                                   .memwbregmuxout(regwraddrins),
                                   .exmemrt(exmemrtout),
                                   .exmemmemwr(exmemmemwrout),

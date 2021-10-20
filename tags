@@ -45,6 +45,7 @@ DATAWIDTH	COUNTER/counter_tb.v	/^parameter DATAWIDTH = 5;$/;"	c	module:counter_t
 DATAWIDTH	COUNTER/counterpip.v	/^parameter DATAWIDTH = 32;$/;"	c	module:counterpip
 DEPTH	SRAM/sram.v	/^parameter DEPTH = 10240;$/;"	c	module:sram
 DEPTH	SRAM/sram_tb.v	/^parameter DEPTH = 64;$/;"	c	module:sram_tb
+DMDEPTH	mipspipeline.v	/^parameter DMDEPTH = 10240;$/;"	c	module:mipspipeline
 DWIDTH	MUX/ALUForwardingMUX/aluforwardingmux.v	/^parameter DWIDTH = 32;$/;"	c	module:aluforwardingmux
 DWIDTH	MUX/MemDataMUX/memdatamux.v	/^parameter DWIDTH = 32;$/;"	c	module:memdatamux
 DWIDTH	PipRegs/exmemreg.v	/^parameter DWIDTH = 32;$/;"	c	module:exmemreg
@@ -267,7 +268,9 @@ branchcode	MUX/PCAddrMUX/pcaddrmux_tb.v	/^reg [1:0] branchcode;$/;"	r	module:pca
 branchctrl	BranchCtrl/branchctrl.v	/^module branchctrl( input wire zero, \/\/ flag from ALU$/;"	m
 branchctrl_tb	BranchCtrl/branchctrl_tb.v	/^module branchctrl_tb();$/;"	m
 branchctrlins	mipssingleclk.v	/^branchctrl branchctrlins ($/;"	i	module:mipssingleclk
+branchctrlout	mipspipeline.v	/^wire [1:0] branchctrlout;$/;"	n	module:mipspipeline
 branchout	mipssingleclk.v	/^wire [1:0] branchout;$/;"	n	module:mipssingleclk
+branctrlins	mipspipeline.v	/^branchctrl branctrlins (.zero(exmemzeroout),$/;"	i	module:mipspipeline
 clk	COUNTER/counter.v	/^input wire clk;$/;"	p	module:counter
 clk	COUNTER/counter_tb.v	/^reg clk, en, clr, load;$/;"	r	module:counter_tb
 clk	COUNTER/counterpip.v	/^input wire clk;$/;"	p	module:counterpip
@@ -284,6 +287,7 @@ clk	RegFile/regfile_tb.v	/^reg clk, wr;$/;"	r	module:regfile_tb
 clk	SRAM/sram.v	/^input wire clk;$/;"	p	module:sram
 clk	SRAM/sram_tb.v	/^reg clk, rd, wr, cs;$/;"	r	module:sram_tb
 clk	mipspipeline.v	/^module mipspipeline( input wire clk,$/;"	p	module:mipspipeline
+clk	mipspipeline_tb.v	/^reg clk;$/;"	r	module:mipspipeline_tb
 clk	mipssingleclk.v	/^module mipssingleclk( input wire clk,$/;"	p	module:mipssingleclk
 clk	mipssingleclk_tb.v	/^reg clk;$/;"	r	module:mipssingleclk_tb
 clr	COUNTER/counter.v	/^input wire clr;$/;"	p	module:counter
@@ -318,6 +322,8 @@ ctrlbbne	mipspipeline.v	/^wire ctrlbbne;$/;"	n	module:mipspipeline
 ctrlbbne	mipssingleclk.v	/^wire ctrljump, ctrlbbeq, ctrlbbne, ctrlbblez, ctrlbbgtz;$/;"	n	module:mipssingleclk
 ctrldmemrd	mipssingleclk.v	/^wire ctrldmemwr, ctrldmemrd;$/;"	n	module:mipssingleclk
 ctrldmemwr	mipssingleclk.v	/^wire ctrldmemwr, ctrldmemrd;$/;"	n	module:mipssingleclk
+ctrlfin	MUX/CtrlSigMUX/ctrlsigmux.v	/^                    input wire ctrlfin,$/;"	p	module:ctrlsigmux
+ctrlfin	mipspipeline.v	/^wire ctrlfin;$/;"	n	module:mipspipeline
 ctrljump	MUX/CtrlSigMUX/ctrlsigmux.v	/^                    input wire ctrljump,$/;"	p	module:ctrlsigmux
 ctrljump	mipspipeline.v	/^wire ctrljump;$/;"	n	module:mipspipeline
 ctrljump	mipssingleclk.v	/^wire ctrljump, ctrlbbeq, ctrlbbne, ctrlbblez, ctrlbbgtz;$/;"	n	module:mipssingleclk
@@ -342,6 +348,7 @@ ctrlsig	MUX/CtrlSigMUX/ctrlsigmux.v	/^module ctrlsigmux ( input wire ctrlsig,$/;
 ctrlsigmux	MUX/CtrlSigMUX/ctrlsigmux.v	/^module ctrlsigmux ( input wire ctrlsig,$/;"	m
 ctrlsigmuxins	mipspipeline.v	/^ctrlsigmux ctrlsigmuxins (.ctrlsig(hazctrlsig),$/;"	i	module:mipspipeline
 ctrlunit	CtrlUnit/ctrlunit.v	/^module ctrlunit( input wire [5:0] opcode, \/\/ first 6bit from MSB$/;"	m
+ctrlunitins	mipspipeline.v	/^ctrlunit ctrlunitins (.opcode(ifidinsout[31:26]),$/;"	i	module:mipspipeline
 data_in	COUNTER/counter.v	/^input wire [DATAWIDTH-1:0] data_in;$/;"	p	module:counter
 data_in	COUNTER/counter_tb.v	/^reg [DATAWIDTH-1:0] data_in;$/;"	r	module:counter_tb
 data_in	COUNTER/counterpip.v	/^input wire [DATAWIDTH-1:0] data_in;$/;"	p	module:counterpip
@@ -350,6 +357,7 @@ data_out	COUNTER/counter_tb.v	/^wire [DATAWIDTH-1:0] data_out;$/;"	n	module:coun
 data_out	COUNTER/counterpip.v	/^output reg [DATAWIDTH-1:0] data_out;$/;"	p	module:counterpip
 data_out_next	COUNTER/counter.v	/^output reg [DATAWIDTH-1:0] data_out_next; $/;"	p	module:counter
 data_out_next	COUNTER/counterpip.v	/^output reg [DATAWIDTH-1:0] data_out_next; $/;"	p	module:counterpip
+datamem	mipspipeline.v	/^sram #(.DEPTH(DMDEPTH)) datamem (.clk(clk),$/;"	i	module:mipspipeline
 datamem	mipssingleclk.v	/^sram #(.DWIDTH(DATAMEMDWITH)) datamem ($/;"	i	module:mipssingleclk
 datamemdout	mipssingleclk.v	/^wire [DATAMEMDWITH-1:0] datamemdout;$/;"	n	module:mipssingleclk
 din	RegFile/regfile.v	/^input wire [DWIDTH-1:0] din, \/\/ data that written into register$/;"	p	module:regfile
@@ -362,6 +370,7 @@ dmdata	MUX/MemDataMUX/memdatamux.v	/^input wire [DWIDTH-1:0] dmdata;$/;"	p	modul
 dmdata	PipRegs/memwbreg.v	/^reg [DWIDTH-1:0] dmdata;$/;"	r	module:memwbreg
 dmdatain	PipRegs/memwbreg.v	/^input wire [DWIDTH-1:0] dmdatain;$/;"	p	module:memwbreg
 dmdataout	PipRegs/memwbreg.v	/^output reg [DWIDTH-1:0] dmdataout;$/;"	p	module:memwbreg
+dmdataout	mipspipeline.v	/^wire [31:0] dmdataout;$/;"	n	module:mipspipeline
 dmresult	MUX/ALUForwardingMUX/aluforwardingmux.v	/^input wire [DWIDTH-1:0] dmresult;$/;"	p	module:aluforwardingmux
 dout	SRAM/sram.v	/^output reg [DWIDTH-1:0] dout;$/;"	p	module:sram
 dout	SRAM/sram_tb.v	/^wire [DWIDTH-1:0] dout;$/;"	n	module:sram_tb
@@ -385,6 +394,7 @@ dut	RegFile/regfile_tb.v	/^regfile #(.DWIDTH(DWIDTH)) dut ($/;"	i	module:regfile
 dut	SRAM/sram_tb.v	/^sram #(.DWIDTH(DWIDTH), .AWIDTH(AWIDTH), .DEPTH(DEPTH)) dut ($/;"	i	module:sram_tb
 dut	SignedExtend/signedextend_tb.v	/^signedextend #(.INWIDTH(INWIDTH), .OUTWIDTH(OUTWIDTH)) dut(din, dout);$/;"	i	module:signedextend_tb
 dut	Unstalling/unstallingunit_tb.v	/^unstallingunit dut(PCEn, En0);$/;"	i	module:unstallingunit_tb
+dut	mipspipeline_tb.v	/^mipspipeline dut (clk, pcclr, fin);$/;"	i	module:mipspipeline_tb
 dut	mipssingleclk_tb.v	/^mipssingleclk dut (clk, pcclr, fin);$/;"	i	module:mipssingleclk_tb
 en	COUNTER/counter.v	/^input wire en;$/;"	p	module:counter
 en	COUNTER/counter_tb.v	/^reg clk, en, clr, load;$/;"	r	module:counter_tb
@@ -398,6 +408,7 @@ exmembbgtzout	mipspipeline.v	/^wire exmembbneout, exmembbeqout, exmembblezout, e
 exmembblezout	mipspipeline.v	/^wire exmembbneout, exmembbeqout, exmembblezout, exmembbgtzout;$/;"	n	module:mipspipeline
 exmembbneout	mipspipeline.v	/^wire exmembbneout, exmembbeqout, exmembblezout, exmembbgtzout;$/;"	n	module:mipspipeline
 exmembranaddrout	mipspipeline.v	/^wire [31:0] exmembranaddrout;$/;"	n	module:mipspipeline
+exmemfinout	mipspipeline.v	/^wire exmemfinout;$/;"	n	module:mipspipeline
 exmemjmpaddrout	mipspipeline.v	/^wire [31:0] exmemjmpaddrout;$/;"	n	module:mipspipeline
 exmemjumpout	mipspipeline.v	/^wire exmemjumpout;$/;"	n	module:mipspipeline
 exmemmemrdout	mipspipeline.v	/^wire exmemmemwrout, exmemmemrdout;$/;"	n	module:mipspipeline
@@ -422,13 +433,25 @@ exreg_tb	PipRegs/exreg_tb.v	/^module exreg_tb ();$/;"	m
 exregins	PipRegs/idexreg.v	/^exreg exregins (clk, alualtsrcin, alusrcin, regdstin, aluopin,$/;"	i	module:idexreg
 extendins	mipspipeline.v	/^signedextend #(.INWIDTH(EXINWIDTH), .OUTWIDTH(EXOUTWIDTH)) extendins ($/;"	i	module:mipspipeline
 extendins	mipssingleclk.v	/^signedextend #(.INWIDTH(EXINWIDTH), .OUTWIDTH(EXOUTWIDTH)) extendins ($/;"	i	module:mipssingleclk
+fin	MUX/CtrlSigMUX/ctrlsigmux.v	/^                    output reg fin );$/;"	p	module:ctrlsigmux
+fin	PipRegs/wbreg.v	/^reg fin;$/;"	r	module:wbreg
 fin	mipspipeline.v	/^                       output wire fin);$/;"	p	module:mipspipeline
+fin	mipspipeline_tb.v	/^wire fin;$/;"	n	module:mipspipeline_tb
 fin	mipssingleclk.v	/^                       output wire fin);$/;"	p	module:mipssingleclk
 fin	mipssingleclk_tb.v	/^wire fin;$/;"	n	module:mipssingleclk_tb
+finin	PipRegs/exmemreg.v	/^input wire finin;$/;"	p	module:exmemreg
+finin	PipRegs/idexreg.v	/^input wire finin;$/;"	p	module:idexreg
+finin	PipRegs/memwbreg.v	/^input wire finin;$/;"	p	module:memwbreg
+finin	PipRegs/wbreg.v	/^               input wire finin,$/;"	p	module:wbreg
+finout	PipRegs/exmemreg.v	/^output wire finout;$/;"	p	module:exmemreg
+finout	PipRegs/idexreg.v	/^output wire finout;$/;"	p	module:idexreg
+finout	PipRegs/memwbreg.v	/^output wire finout;$/;"	p	module:memwbreg
+finout	PipRegs/wbreg.v	/^               output wire finout);$/;"	p	module:wbreg
 foraluforward1	mipspipeline.v	/^wire [1:0] foraluforward1;$/;"	n	module:mipspipeline
 foraluforward2	mipspipeline.v	/^wire [1:0] foraluforward2;$/;"	n	module:mipspipeline
 formemdata	mipspipeline.v	/^wire formemdata;$/;"	n	module:mipspipeline
 forwardingunit	ForwardingUnit/forwardingunit.v	/^module forwardingunit ( input wire exmemregwr, $/;"	m
+forwardingunitins	mipspipeline.v	/^forwardingunit forwardingunitins (.exmemregwr(exmemregwrout),$/;"	i	module:mipspipeline
 fp	RegFile/regindexdef.v	/^`define fp 30$/;"	c
 funct	ALUCtrl/aluctrl.v	/^               input wire [5:0] funct,$/;"	p	module:aluctrl
 funct	ALUCtrl/aluctrl_tb.v	/^reg [5:0] funct;$/;"	r	module:aluctrl_tb
@@ -437,6 +460,7 @@ functin	PipRegs/idexreg.v	/^input wire [5:0] functin;$/;"	p	module:idexreg
 functout	PipRegs/idexreg.v	/^output reg [5:0] functout;$/;"	p	module:idexreg
 gp	RegFile/regindexdef.v	/^`define gp 28$/;"	c
 hazarddetectionunit	HazardDetectionUnit/hazarddetectionunit.v	/^module hazarddetectionunit ( input wire [4:0] idexrt,$/;"	m
+hazarddetectionunitins	mipspipeline.v	/^hazarddetectionunit hazarddetectionunitins (.idexrt(idexrtout),$/;"	i	module:mipspipeline
 hazctrlsig	mipspipeline.v	/^wire hazctrlsig;$/;"	n	module:mipspipeline
 hazpcen	mipspipeline.v	/^wire hazpcen;$/;"	n	module:mipspipeline
 idexalualtsrcin	mipspipeline.v	/^wire idexalualtsrcin, idexalualtsrcout;$/;"	n	module:mipspipeline
@@ -455,6 +479,8 @@ idexbbnein	mipspipeline.v	/^wire idexbbnein, idexbbneout, idexbbeqin, idexbbeqou
 idexbbneout	mipspipeline.v	/^wire idexbbnein, idexbbneout, idexbbeqin, idexbbeqout;$/;"	n	module:mipspipeline
 idexbranaddrin	mipspipeline.v	/^wire [IDEXAWIDTH-1:0] idexbranaddrin;$/;"	n	module:mipspipeline
 idexbranaddrout	mipspipeline.v	/^wire [IDEXAWIDTH-1:0] idexbranaddrout;$/;"	n	module:mipspipeline
+idexfinin	mipspipeline.v	/^wire idexfinin, idexfinout;$/;"	n	module:mipspipeline
+idexfinout	mipspipeline.v	/^wire idexfinin, idexfinout;$/;"	n	module:mipspipeline
 idexfunctout	mipspipeline.v	/^wire [5:0] idexfunctout;$/;"	n	module:mipspipeline
 idexjmpaddrin	mipspipeline.v	/^wire [IDEXAWIDTH-1:0] idexjmpaddrin;$/;"	n	module:mipspipeline
 idexjmpaddrout	mipspipeline.v	/^wire [IDEXAWIDTH-1:0] idexjmpaddrout;$/;"	n	module:mipspipeline
@@ -465,6 +491,7 @@ idexmemrdin	mipspipeline.v	/^wire idexmemwrin, idexmemwrout, idexmemrdin, idexme
 idexmemrdout	mipspipeline.v	/^wire idexmemwrin, idexmemwrout, idexmemrdin, idexmemrdout;$/;"	n	module:mipspipeline
 idexmemtoregin	mipspipeline.v	/^wire [1:0] idexmemtoregin;$/;"	n	module:mipspipeline
 idexmemtoregout	mipspipeline.v	/^wire [1:0] idexmemtoregout;$/;"	n	module:mipspipeline
+idexmemwr	ForwardingUnit/forwardingunit.v	/^                        input idexmemwr,$/;"	p	module:forwardingunit
 idexmemwrin	mipspipeline.v	/^wire idexmemwrin, idexmemwrout, idexmemrdin, idexmemrdout;$/;"	n	module:mipspipeline
 idexmemwrout	mipspipeline.v	/^wire idexmemwrin, idexmemwrout, idexmemrdin, idexmemrdout;$/;"	n	module:mipspipeline
 idexpcnextout	mipspipeline.v	/^wire [IDEXAWIDTH-1:0] idexpcnextout;$/;"	n	module:mipspipeline
@@ -554,10 +581,16 @@ memtoregout	PipRegs/exmemreg.v	/^output wire [1:0] memtoregout;$/;"	p	module:exm
 memtoregout	PipRegs/idexreg.v	/^output wire [1:0] memtoregout;$/;"	p	module:idexreg
 memtoregout	PipRegs/memwbreg.v	/^output wire [1:0] memtoregout;$/;"	p	module:memwbreg
 memtoregout	PipRegs/wbreg.v	/^               output wire [1:0] memtoregout,$/;"	p	module:wbreg
+memwbaluoutout	mipspipeline.v	/^wire [31:0] memwbaluoutout;$/;"	n	module:mipspipeline
 memwbdmdataout	mipspipeline.v	/^wire [31:0] memwbdmdataout;$/;"	n	module:mipspipeline
-memwbreg	PipRegs/memwbreg.v	/^module memwbreg (clk, memtoregin, regwrin,$/;"	m
+memwbmemtoregout	mipspipeline.v	/^wire [1:0] memwbmemtoregout;$/;"	n	module:mipspipeline
+memwbnegativeout	mipspipeline.v	/^wire memwbnegativeout;$/;"	n	module:mipspipeline
+memwbpcnextout	mipspipeline.v	/^wire [31:0] memwbpcnextout;$/;"	n	module:mipspipeline
+memwbreg	PipRegs/memwbreg.v	/^module memwbreg (clk, memtoregin, regwrin, finin,$/;"	m
+memwbregins	mipspipeline.v	/^memwbreg memwbregins (.clk(clk),$/;"	i	module:mipspipeline
 memwbregmuxout	ForwardingUnit/forwardingunit.v	/^                        input wire [4:0] memwbregmuxout,$/;"	p	module:forwardingunit
 memwbregwr	ForwardingUnit/forwardingunit.v	/^                        input memwbregwr,$/;"	p	module:forwardingunit
+memwbregwrout	mipspipeline.v	/^wire memwbregwrout;$/;"	n	module:mipspipeline
 memwr	MUX/CtrlSigMUX/ctrlsigmux.v	/^                    output reg memwr,$/;"	p	module:ctrlsigmux
 memwr	PipRegs/memreg.v	/^reg memwr, memrd, bbne, bbeq, bblez, bbgtz, jump;$/;"	r	module:memreg
 memwrin	PipRegs/exmemreg.v	/^input wire clk, memwrin, memrdin, bbnein, bbeqin, bblezin, bbgtzin, jumpin;$/;"	p	module:exmemreg
@@ -567,6 +600,7 @@ memwrout	PipRegs/exmemreg.v	/^output wire memwrout, memrdout, bbneout, bbeqout, 
 memwrout	PipRegs/idexreg.v	/^output wire  memwrout, memrdout, bbneout, bbeqout, bblezout, bbgtzout;$/;"	p	module:idexreg
 memwrout	PipRegs/memreg.v	/^               output wire memwrout,$/;"	p	module:memreg
 mipspipeline	mipspipeline.v	/^module mipspipeline( input wire clk,$/;"	m
+mipspipeline_tb	mipspipeline_tb.v	/^module mipspipeline_tb ();$/;"	m
 mipssingleclk	mipssingleclk.v	/^module mipssingleclk( input wire clk,$/;"	m
 mipssingleclk_tb	mipssingleclk_tb.v	/^module mipssingleclk_tb ();$/;"	m
 negation	ALU/alu_tb.v	/^task negation;$/;"	t	module:alu_tb
@@ -623,6 +657,7 @@ out	BranchCtrl/branchctrl.v	/^                   output reg [1:0] out); \/\/ 3 c
 out	BranchCtrl/branchctrl_tb.v	/^wire [1:0] out;$/;"	n	module:branchctrl_tb
 out	MUX/ALUForwardingMUX/aluforwardingmux.v	/^output reg [DWIDTH-1:0] out;$/;"	p	module:aluforwardingmux
 out	MUX/MemDataMUX/memdatamux.v	/^output reg [DWIDTH-1:0] out;$/;"	p	module:memdatamux
+outfile	mipspipeline_tb.v	/^integer outfile; \/\/ file descriptor$/;"	r	module:mipspipeline_tb
 outfile	mipssingleclk_tb.v	/^integer outfile; \/\/ file descriptor$/;"	r	module:mipssingleclk_tb
 overflow	ALU/alu.v	/^output reg overflow, \/\/ flag to indicate result is overflow, active HIGH$/;"	p	module:alu
 overflow	ALU/alu_tb.v	/^wire zero, overflow, negative;$/;"	n	module:alu_tb
@@ -638,8 +673,10 @@ pcaddress	mipspipeline.v	/^wire [PCDATAWIDTH-1:0] pcaddress;$/;"	n	module:mipspi
 pcaddress	mipssingleclk.v	/^wire [PCDATAWIDTH-1:0] pcaddress;$/;"	n	module:mipssingleclk
 pcaddrmux	MUX/PCAddrMUX/pcaddrmux.v	/^module pcaddrmux(input wire [31:0] jumpaddr,$/;"	m
 pcaddrmux_tb	MUX/PCAddrMUX/pcaddrmux_tb.v	/^module pcaddrmux_tb();$/;"	m
+pcaddrmuxins	mipspipeline.v	/^pcaddrmux pcaddrmuxins (.jumpaddr(exmemjmpaddrout),$/;"	i	module:mipspipeline
 pcaddrmuxins	mipssingleclk.v	/^pcaddrmux pcaddrmuxins ($/;"	i	module:mipssingleclk
 pcclr	mipspipeline.v	/^                       input wire pcclr,$/;"	p	module:mipspipeline
+pcclr	mipspipeline_tb.v	/^reg pcclr;$/;"	r	module:mipspipeline_tb
 pcclr	mipssingleclk.v	/^                       input wire pcclr,$/;"	p	module:mipssingleclk
 pcclr	mipssingleclk_tb.v	/^reg pcclr;$/;"	r	module:mipssingleclk_tb
 pcdata	MUX/RegSrcMUX/regsrcmux.v	/^                  input wire [31:0] pcdata,$/;"	p	module:regsrcmux
@@ -720,8 +757,9 @@ register	RegFile/regfile.v	/^reg [DWIDTH-1:0] register [0:31];$/;"	r	module:regf
 regsrc	MUX/ALUAltSrcMUX/alualtsrcmux.v	/^module alualtsrcmux( input wire [31:0] regsrc,$/;"	p	module:alualtsrcmux
 regsrc	MUX/ALUSrcMUX/alusrcmux.v	/^module alusrcmux( input wire [31:0] regsrc,$/;"	p	module:alusrcmux
 regsrcmux	MUX/RegSrcMUX/regsrcmux.v	/^module regsrcmux( input wire [31:0] memdata,$/;"	m
+regsrcmuxins	mipspipeline.v	/^regsrcmux regsrcmuxins (.memdata(memwbdmdataout),$/;"	i	module:mipspipeline
 regsrcmuxins	mipssingleclk.v	/^regsrcmux regsrcmuxins ($/;"	i	module:mipssingleclk
-regwr	MUX/CtrlSigMUX/ctrlsigmux.v	/^                    output reg regwr );$/;"	p	module:ctrlsigmux
+regwr	MUX/CtrlSigMUX/ctrlsigmux.v	/^                    output reg regwr,$/;"	p	module:ctrlsigmux
 regwr	PipRegs/wbreg.v	/^reg regwr;$/;"	r	module:wbreg
 regwraddrins	mipspipeline.v	/^wire [4:0] regwraddrins;$/;"	n	module:mipspipeline
 regwrin	PipRegs/exmemreg.v	/^input wire regwrin;$/;"	p	module:exmemreg
@@ -731,7 +769,7 @@ regwrin	PipRegs/wbreg.v	/^               input wire regwrin, $/;"	p	module:wbreg
 regwrout	PipRegs/exmemreg.v	/^output wire regwrout;$/;"	p	module:exmemreg
 regwrout	PipRegs/idexreg.v	/^output wire regwrout;$/;"	p	module:idexreg
 regwrout	PipRegs/memwbreg.v	/^output wire regwrout;$/;"	p	module:memwbreg
-regwrout	PipRegs/wbreg.v	/^               output wire regwrout );$/;"	p	module:wbreg
+regwrout	PipRegs/wbreg.v	/^               output wire regwrout,$/;"	p	module:wbreg
 rs	PipRegs/idexreg.v	/^reg [4:0] rs;$/;"	r	module:idexreg
 rsin	PipRegs/idexreg.v	/^input wire [4:0] rsin;$/;"	p	module:idexreg
 rsout	PipRegs/idexreg.v	/^output reg [4:0] rsout;$/;"	p	module:idexreg
@@ -786,9 +824,9 @@ unstallingunitins	mipspipeline.v	/^unstallingunit unstallingunitins (ctrlpcen, u
 v0	RegFile/regindexdef.v	/^`define v0 2$/;"	c
 v1	RegFile/regindexdef.v	/^`define v1 3$/;"	c
 wbreg	PipRegs/wbreg.v	/^module wbreg ( input wire clk,$/;"	m
-wbregins	PipRegs/exmemreg.v	/^wbreg wbregins (clk, memtoregin, regwrin, memtoregout, regwrout);$/;"	i	module:exmemreg
-wbregins	PipRegs/idexreg.v	/^wbreg wbregins (clk, memtoregin, regwrin, memtoregout, regwrout);$/;"	i	module:idexreg
-wbregins	PipRegs/memwbreg.v	/^wbreg wbregins (clk, memtoregin, regwrin, memtoregout, regwrout);$/;"	i	module:memwbreg
+wbregins	PipRegs/exmemreg.v	/^wbreg wbregins (clk, memtoregin, regwrin, finin,$/;"	i	module:exmemreg
+wbregins	PipRegs/idexreg.v	/^wbreg wbregins (clk, memtoregin, regwrin, finin, $/;"	i	module:idexreg
+wbregins	PipRegs/memwbreg.v	/^wbreg wbregins (clk, memtoregin, regwrin, finin,$/;"	i	module:memwbreg
 wr	RegFile/regfile.v	/^input wire wr, \/\/ write to register signal, active HIGH$/;"	p	module:regfile
 wr	RegFile/regfile_tb.v	/^reg clk, wr;$/;"	r	module:regfile_tb
 wr	SRAM/sram.v	/^input wire wr;$/;"	p	module:sram

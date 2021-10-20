@@ -1,0 +1,9 @@
+// this file is supposed to be read into instruction memory during test
+// this test code's main job is to test if forwarding will work when
+// certain type of data hazard happens. The data hazard will be test here
+// is be demostrated as a series of instructions.
+// the content of mem[4] should be 10100 (20).
+001000_00000_00010_0000000000010100 // addi $2 $zero 20, store 20 into $2
+001100_00010_00011_0000000000110110 // andi $3 $2 38, store $2 & 38 into $3
+101011_00000_00011_0000000000010000 // sw $3 16($zero), mem[4] = $3
+010000_00000000000000000000000000 // fin, halt cpu

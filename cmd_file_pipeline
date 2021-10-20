@@ -1,4 +1,5 @@
 ./mipspipeline_tb.v
 -y ./COUNTER
 -y ./ALUCtrl
-+incdir+./RegFile+./ALUCtrl+./ALU+./BranchCtrl+./CtrlUnit+./ForwardingUnit+./HazardDetectionUnit+./PipRegs+./Unstalling+
+-y ./PipRegs
++incdir+./RegFile+./ALUCtrl+./ALU+./BranchCtrl+./CtrlUnit+./ForwardingUnit+./HazardDetectionUnit+./Unstalling+

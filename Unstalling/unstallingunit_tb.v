@@ -8,6 +8,8 @@ reg PCEn;
 wire En0;
 
 initial begin
+    $dumpfile("test.vcp");
+    $dumpvars;
     $display("PCEn\t En0\t\n");
     $monitor("%b\t %b\t\n", PCEn, En0);
     #1 PCEn = 1'bx;

@@ -6,6 +6,10 @@
 * branch address field and jump address field.
 */
 
+/* `include "./wbreg.v" */
+/* `include "./memreg.v" */
+/* `include "./exreg.v" */
+
 module idexreg ( clk, alualtsrcin, alusrcin, regdstin, aluopin, 
                 alualtsrcout, alusrcout, regdstout, aluopout,
                 memwrin, memrdin, bbnein, bbeqin, bblezin, bbgtzin,

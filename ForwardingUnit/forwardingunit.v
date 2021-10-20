@@ -10,6 +10,7 @@ module forwardingunit ( input wire exmemregwr,
                         input wire [4:0] idexrs,
                         input wire [4:0] idexrt,
                         input memwbregwr,
+                        input idexmemwr,
                         input wire [4:0] memwbregmuxout,
                         input wire [4:0] exmemrt,
                         input wire exmemmemwr,
@@ -27,8 +28,9 @@ always @(*) begin
         aluforward1 = 2'b10;
     end
 
+    // added ID/EX.MemWr check is to exclude sw instruction scenario
     if (exmemregwr && (exmemregmuxout != 0) &&
-        (exmemregmuxout == idexrt)) begin
+        (exmemregmuxout == idexrt) && idexmemwr != 1'b1) begin
         aluforward2 = 2'b10;
     end
 
@@ -46,7 +48,7 @@ always @(*) begin
         aluforward2 = 2'b01;
     end
 
-    if ((memwbregmuxout == exmemregmuxout) && exmemmemwr && 
+    if ((memwbregmuxout == exmemrt) && exmemmemwr && 
         (exmemrt != 0)) begin
         memdata = 1'b1;
     end

@@ -15,8 +15,13 @@
 module unstallingunit ( input wire PCEn,
                         output reg En0);
 
+
+initial begin
+    En0 = 1'b1;
+end
+
 always @(PCEn) begin
-    if (PCEn == 1'bx) begin
+    if (PCEn === 1'bx) begin
         En0 = 1'b1;
     end else begin
         En0 = PCEn;

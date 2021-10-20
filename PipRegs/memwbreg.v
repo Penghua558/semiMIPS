@@ -4,6 +4,9 @@
 * RegDstMUX output, ALU result, data memory output, PC+4,negative flag.
 */
 
+
+/* `include "./wbreg.v" */
+
 module memwbreg (clk, memtoregin, regwrin, finin,
                     memtoregout, regwrout, finout,
                     regdstmuxin, aluoutin, dmdatain, pcnextin, negativein,
@@ -28,7 +31,7 @@ output reg [DWIDTH-1:0] dmdataout;
 output reg [AWIDTH-1:0] pcnextout;
 output reg negativeout;
 input wire finin;
-input wire finout;
+output wire finout;
 
 wbreg wbregins (clk, memtoregin, regwrin, finin,
                 memtoregout, regwrout, finout);
