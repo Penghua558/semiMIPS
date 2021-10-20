@@ -16,7 +16,7 @@ always
     #2 clk = ~clk;
 
 initial begin
-    $dumpfile("test.vcp");
+    $dumpfile("testpipeline.vcp");
     $dumpvars;
     clk = 0;
     pcclr = 0; // reset CPU
