@@ -353,6 +353,17 @@ alu aluins (.op(aluctrlout),
             .negative(alunegative));
 
 
+// MemDataMUX instance 2, this is placed right before EX/MEM pipeline register
+// this is a signal controled by Forwarding Unit
+wire formemdata2;
+
+wire [31:0] memdatamuxins2out; 
+
+memdatamux memdatamuxins2 (.memdata(formemdata2),
+                           .regdata(idexregdata2out),
+                           .dmdata(regdinins),
+                           .out(memdatamuxins2out));
+
 
 // EX/MEM pipeline register instance
 // MEM control signals output ports
@@ -398,7 +409,7 @@ exmemreg exmemregins (.clk(clk),
                       .negativein(alunegative),
                       .overflowin(aluoverflow),
                       .regdstmuxin(regdstout),
-                      .regdata2in(idexregdata2out),
+                      .regdata2in(memdatamuxins2out),
                       .branaddrin(idexbranaddrout),
                       .jmpaddrin(idexjmpaddrout),
                       .pcnextin(idexpcnextout),
@@ -539,7 +550,8 @@ forwardingunit forwardingunitins (.exmemregwr(exmemregwrout),
                                   .exmemmemwr(exmemmemwrout),
                                   .aluforward1(foraluforward1),
                                   .aluforward2(foraluforward2),
-                                  .memdata(formemdata));
+                                  .memdata(formemdata),
+                                  .memdata2(formemdata2));
 
 
 

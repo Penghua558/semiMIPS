@@ -16,12 +16,14 @@ module forwardingunit ( input wire exmemregwr,
                         input wire exmemmemwr,
                         output reg [1:0] aluforward1,
                         output reg [1:0] aluforward2,
-                        output reg memdata);
+                        output reg memdata,
+                        output reg memdata2 );
 
 always @(*) begin
     aluforward1 = 2'b00;
     aluforward2 = 2'b00;
     memdata = 1'b0;
+    memdata2 = 1'b0;
 
     if (exmemregwr && (exmemregmuxout != 0) && 
         (exmemregmuxout == idexrs)) begin
@@ -52,6 +54,12 @@ always @(*) begin
         (exmemrt != 0)) begin
         memdata = 1'b1;
     end
+
+    if (idexmemwr && (idexrt != 0) && 
+        (memwbregmuxout == idexrt)) begin
+        memdata2 = 1'b1;
+    end
+
 end
 
 endmodule
