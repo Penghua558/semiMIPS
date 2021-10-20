@@ -1,11 +1,11 @@
 /*
-* File Name: mipssingleclk_tb.v
-* Function: this is a testbench file for MIPS single clocked implemention
+* File Name: mipspipeline_tb.v
+* Function: this is a testbench file for MIPS pipeline implemention
 */
 
-`include "./mipssingleclk.v"
+`include "./mipspipeline.v"
 
-module mipssingleclk_tb ();
+module mipspipeline_tb ();
 reg clk;
 reg pcclr;
 wire fin;
@@ -39,6 +39,6 @@ end
 
 
 // DUT, device under test 
-mipssingleclk dut (clk, pcclr, fin);
+mipspipeline dut (clk, pcclr, fin);
 
 endmodule

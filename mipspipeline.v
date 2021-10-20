@@ -1,8 +1,8 @@
 /*
 * File Name: mipspipeline.v
-* Function: this is the main file of MIPS single clocked architecture CPU,
+* Function: this is the main file of MIPS pipeline architecture CPU,
 * to understand the datapath one can view the file
-* ./datapth_singleclock.drawio
+* ./datapath_pipelining.drawio
 * The CPU has 2 inputs, 1st is clock signal, 2nd is reset signal, which is
 * active LOW, while reset signal is asserted the PC will always output 0,
 * which results that CPU will stalk at 1st instruction
