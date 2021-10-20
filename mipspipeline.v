@@ -425,7 +425,7 @@ wire [31:0] memdatamuxout;
 
 memdatamux memdatamuxins (.regdata(exmemregdata2out),
                           .memdata(formemdata),
-                          .dmdata(memwbdmdataout),
+                          .dmdata(regdinins),
                           .out(memdatamuxout));
 
 
