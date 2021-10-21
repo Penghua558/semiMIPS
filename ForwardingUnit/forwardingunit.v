@@ -45,14 +45,14 @@ always @(*) begin
 
     if (memwbregwr && (memwbregmuxout != 0) &&
         !(exmemregwr && (exmemregmuxout != 0) && 
-        (exmemregmuxout != idexrs)) &&
+        (exmemregmuxout == idexrs)) &&
         (memwbregmuxout == idexrs)) begin
         aluforward1 = 2'b01;
     end
 
     if (memwbregwr && (memwbregmuxout != 0) && (idexmemwr != 1'b1) &&
         !(exmemregwr && (exmemregmuxout != 0) &&
-        (exmemregmuxout != idexrt)) &&
+        (exmemregmuxout == idexrt)) &&
         (memwbregmuxout == idexrt) &&
         (idexins == 6'h00)) begin
         aluforward2 = 2'b01;
