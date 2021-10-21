@@ -23,7 +23,7 @@ initial begin
     $display("time\t current PC address\t Instruction\n");
     $monitor("%g\t %b\t %b\t", $time, dut.pcdata_out, dut.insmemins);
     $display("reading memory file...");
-    $readmemb("./TestMemoryFiles/pip2regs.lst", dut.insmem.mem);
+    $readmemb("./TestMemoryFiles/pipstalling.lst", dut.insmem.mem);
     #1 pcclr = 1; // start running program
     $display("running program...");
     // output memory data to file

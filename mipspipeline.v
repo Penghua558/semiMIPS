@@ -93,13 +93,17 @@ wire [IFIDINSWIDTH-1:0] ifidinsout;
 // pcnextout port for module IF/ID pipeline register
 wire [IFIDAWIDTH-1:0] ifidpcnextout;
 
+// this signal is controled by Hazard Detection Unit
+wire hazifidregwr;
+
 // IF/ID pipeline register instance
 ifidreg #(.INSWIDTH(IFIDINSWIDTH), .AWIDTH(IFIDAWIDTH)) 
     ifidregins (.clk(clk),
                 .insin(insmemins),
                 .pcnextin(pcdata_out_next),
                 .insout(ifidinsout),
-                .pcnextout(ifidpcnextout));
+                .pcnextout(ifidpcnextout),
+                .wr(hazifidregwr));
 
 
 
@@ -590,6 +594,7 @@ hazarddetectionunit hazarddetectionunitins (.idexrt(idexrtout),
                                             .ifidrt(ifidinsout[20:16]),
                                             .idexmemrd(idexmemrdout),
                                             .pcen(hazpcen),
-                                            .ctrlsig(hazctrlsig));
+                                            .ctrlsig(hazctrlsig),
+                                            .ifidregwr(hazifidregwr));
 
 endmodule
