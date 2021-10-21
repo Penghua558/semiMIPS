@@ -186,6 +186,7 @@ wire [IDEXAWIDTH-1:0] idexbranaddrout;
 wire [IDEXAWIDTH-1:0] idexjmpaddrin;
 wire [IDEXAWIDTH-1:0] idexjmpaddrout;
 wire [IDEXAWIDTH-1:0] idexpcnextout;
+wire [31:0] idexinsout;
 
 // branch address and jump address calculation
 assign idexbranaddrin = (exdout << 2) + ifidpcnextout;
@@ -232,6 +233,7 @@ idexreg #(.DWIDTH(IDEXDWIDTH), .AWIDTH(IDEXAWIDTH))
                 .pcnextin(ifidpcnextout),
                 .branaddrin(idexbranaddrin),
                 .jmpaddrin(idexjmpaddrin),
+                .insin(ifidinsout),
                 .regdata1out(idexregdata1out),
                 .regdata2out(idexregdata2out),
                 .signexout(idexsignexout),
@@ -241,7 +243,8 @@ idexreg #(.DWIDTH(IDEXDWIDTH), .AWIDTH(IDEXAWIDTH))
                 .rdout(idexrdout),
                 .pcnextout(idexpcnextout),
                 .branaddrout(idexbranaddrout),
-                .jmpaddrout(idexjmpaddrout));
+                .jmpaddrout(idexjmpaddrout),
+                .insout(idexinsout));
 
 
 // CtrlSigMUX instance
@@ -398,6 +401,7 @@ wire [31:0] exmembranaddrout;
 wire [31:0] exmemjmpaddrout;
 wire [4:0] exmemrtout;
 wire [31:0] exmempcnextout;
+wire [31:0] exmeminsout;
 
 exmemreg exmemregins (.clk(clk),
                       .memwrin(idexmemwrout),
@@ -429,6 +433,7 @@ exmemreg exmemregins (.clk(clk),
                       .jmpaddrin(idexjmpaddrout),
                       .pcnextin(idexpcnextout),
                       .rtin(idexrtout),
+                      .insin(idexinsout),
                       .aluoutout(exmemaluresultout),
                       .zeroout(exmemzeroout),
                       .negativeout(exmemnegativeout), 
@@ -438,7 +443,8 @@ exmemreg exmemregins (.clk(clk),
                       .branaddrout(exmembranaddrout),
                       .jmpaddrout(exmemjmpaddrout),
                       .rtout(exmemrtout),
-                      .pcnextout(exmempcnextout));
+                      .pcnextout(exmempcnextout),
+                      .insout(exmeminsout));
 
 
 
@@ -503,6 +509,7 @@ wire [1:0] memwbmemtoregout;
 wire [31:0] memwbaluoutout;
 wire [31:0] memwbpcnextout;
 wire memwbnegativeout;
+wire [31:0] memwbinsout;
 
 memwbreg memwbregins (.clk(clk),
                       .memtoregin(exmemmemtoregout),
@@ -516,11 +523,13 @@ memwbreg memwbregins (.clk(clk),
                       .dmdatain(dmdataout),
                       .pcnextin(exmempcnextout),
                       .negativein(exmemnegativeout),
+                      .insin(exmeminsout),
                       .regdstmuxout(regwraddrins),
                       .aluoutout(memwbaluoutout),
                       .dmdataout(memwbdmdataout),
                       .pcnextout(memwbpcnextout),
-                      .negativeout(memwbnegativeout));
+                      .negativeout(memwbnegativeout),
+                      .insout(memwbinsout));
 
 
 
@@ -564,6 +573,9 @@ forwardingunit forwardingunitins (.exmemregwr(exmemregwrout),
                                   .memwbregmuxout(regwraddrins),
                                   .exmemrt(exmemrtout),
                                   .exmemmemwr(exmemmemwrout),
+                                  .idexins(idexinsout),
+                                  .exmemins(exmeminsout),
+                                  .memwbins(memwbinsout),
                                   .aluforward1(foraluforward1),
                                   .aluforward2(foraluforward2),
                                   .memdata(formemdata),

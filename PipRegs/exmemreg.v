@@ -3,7 +3,7 @@
 * Function: this is EX/MEM pipeline register module. It contains WB register,
 * MEM register, ALU result, zero flag, negative flag, overflow flag, 
 * RegDstMUX output, register file data output 2, branch address, jump
-* address.
+* address, Rt field, PC+4, instruction.
 */
 
 /* `include "./wbreg.v" */
@@ -17,9 +17,10 @@ module exmemreg ( clk, memwrin, memrdin, bbnein, bbeqin, bblezin, bbgtzin,
                     memtoregout, regwrout, finout,
                     aluoutin, zeroin, negativein, overflowin,
                     regdstmuxin, regdata2in, branaddrin, jmpaddrin, pcnextin,
+                    insin,
                     aluoutout, zeroout, negativeout, overflowout,
                     regdstmuxout, regdata2out, branaddrout, jmpaddrout,
-                    rtin, rtout, pcnextout);
+                    rtin, rtout, pcnextout, insout);
 parameter AWIDTH = 32;
 parameter DWIDTH = 32;
 
@@ -48,6 +49,8 @@ output reg [4:0] rtout;
 output reg [AWIDTH-1:0] pcnextout;
 input wire finin;
 output wire finout;
+input wire [31:0] insin;
+output reg [31:0] insout;
 
 wbreg wbregins (clk, memtoregin, regwrin, finin,
                 memtoregout, regwrout, finout);
@@ -65,6 +68,7 @@ reg [AWIDTH-1:0] branaddr;
 reg [AWIDTH-1:0] jmpaddr;
 reg [4:0] rt;
 reg [AWIDTH-1:0] pcnext;
+reg [31:0] ins;
 
 always @(aluout) begin
     aluoutout = aluout;
@@ -106,6 +110,10 @@ always @(pcnext) begin
     pcnextout = pcnext;
 end
 
+always @(ins) begin
+    insout = ins;
+end
+
 always @(posedge clk) begin
     aluout <= aluoutin;
     zero <= zeroin;
@@ -117,6 +125,7 @@ always @(posedge clk) begin
     jmpaddr <= jmpaddrin;
     rt <= rtin;
     pcnext <= pcnextin;
+    ins <= insin;
 end
 
 endmodule

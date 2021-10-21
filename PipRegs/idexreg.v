@@ -3,7 +3,7 @@
 * Function: this module is ID/EX pipeline register. It contains WB register,
 * MEM register, EX register, register file data output 1&2, SignedExtend
 * module output, funct code field, Rt field, Rs field, Rd field, PC+4 field,
-* branch address field and jump address field.
+* branch address field and jump address field, instruction.
 */
 
 /* `include "./wbreg.v" */
@@ -19,9 +19,9 @@ module idexreg ( clk, alualtsrcin, alusrcin, regdstin, aluopin,
                 memtoregin, regwrin, finin,
                 memtoregout, regwrout, finout,
                 regdata1in, regdata2in, signexin, functin, rtin, rsin,
-                rdin, pcnextin, branaddrin, jmpaddrin,
+                rdin, pcnextin, branaddrin, jmpaddrin, insin,
                 regdata1out, regdata2out, signexout, functout, rtout,
-                rsout, rdout, pcnextout, branaddrout, jmpaddrout );
+                rsout, rdout, pcnextout, branaddrout, jmpaddrout, insout );
 parameter DWIDTH = 32;
 parameter AWIDTH = 32;
 
@@ -63,6 +63,8 @@ output reg [AWIDTH-1:0] branaddrout;
 output reg [AWIDTH-1:0] jmpaddrout;
 input wire finin;
 output wire finout;
+input wire [31:0] insin;
+output reg [31:0] insout;
 
 wbreg wbregins (clk, memtoregin, regwrin, finin, 
                 memtoregout, regwrout, finout);
@@ -83,6 +85,7 @@ reg [4:0] rd;
 reg [AWIDTH-1:0] pcnext;
 reg [AWIDTH-1:0] branaddr;
 reg [AWIDTH-1:0] jmpaddr;
+reg [31:0] ins;
 
 always @(regdata1) begin
     regdata1out = regdata1;
@@ -124,6 +127,10 @@ always @(jmpaddr) begin
     jmpaddrout = jmpaddr;
 end
 
+always @(ins) begin
+    insout = ins;
+end
+
 always @(posedge clk) begin
     regdata1 <= regdata1in;
     regdata2 <= regdata2in;
@@ -135,6 +142,7 @@ always @(posedge clk) begin
     pcnext <= pcnextin;
     branaddr <= branaddrin;
     jmpaddr <= jmpaddrin;
+    ins <= insin;
 end
 
 endmodule

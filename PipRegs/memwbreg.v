@@ -10,8 +10,9 @@
 module memwbreg (clk, memtoregin, regwrin, finin,
                     memtoregout, regwrout, finout,
                     regdstmuxin, aluoutin, dmdatain, pcnextin, negativein,
+                    insin,
                     regdstmuxout, aluoutout, dmdataout, pcnextout,
-                    negativeout);
+                    negativeout, insout);
 parameter DWIDTH = 32;
 parameter AWIDTH = 32;
 
@@ -32,6 +33,8 @@ output reg [AWIDTH-1:0] pcnextout;
 output reg negativeout;
 input wire finin;
 output wire finout;
+input wire [31:0] insin;
+output reg [31:0] insout;
 
 wbreg wbregins (clk, memtoregin, regwrin, finin,
                 memtoregout, regwrout, finout);
@@ -42,6 +45,7 @@ reg [DWIDTH-1:0] aluout;
 reg [DWIDTH-1:0] dmdata;
 reg [AWIDTH-1:0] pcnext;
 reg negative;
+reg [31:0] ins;
 
 always @(regdstmux) begin
     regdstmuxout = regdstmux;
@@ -63,12 +67,17 @@ always @(negative) begin
     negativeout = negative;
 end
 
+always @(ins) begin
+    insout = ins;
+end
+
 always @(posedge clk) begin
     regdstmux <= regdstmuxin;
     aluout <= aluoutin;
     dmdata <= dmdatain;
     pcnext <= pcnextin;
     negative <= negativein;
+    ins <= insin;
 end
 
 endmodule
