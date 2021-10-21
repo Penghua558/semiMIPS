@@ -136,6 +136,21 @@ signedextend #(.INWIDTH(EXINWIDTH), .OUTWIDTH(EXOUTWIDTH)) extendins (
             .dout(exdout));
 
 
+// MemDataMUX instance 3
+// this instance is placed right before ID/EX pipeline register to
+// forwarding WB stage's write data to register's data2 output
+
+// this is controled by Forwarding Unit
+wire forregdata2;
+
+wire [31:0] regdata2muxout;
+
+memdatamux regdata2muxins (.memdata(forregdata2),
+                           .regdata(regdout2ins),
+                           .dmdata(regdinins),
+                           .out(regdata2muxout));
+
+
 // ID/EX pipeline register instance 
 parameter IDEXDWIDTH = REGDWIDTH;
 parameter IDEXAWIDTH = IFIDAWIDTH;
@@ -208,7 +223,7 @@ idexreg #(.DWIDTH(IDEXDWIDTH), .AWIDTH(IDEXAWIDTH))
                 .regwrout(idexregwrout),
                 .finout(idexfinout),
                 .regdata1in(regdout1ins),
-                .regdata2in(regdout2ins),
+                .regdata2in(regdata2muxout),
                 .signexin(exdout),
                 .functin(ifidinsout[5:0]),
                 .rtin(ifidinsout[20:16]),
@@ -544,6 +559,7 @@ forwardingunit forwardingunitins (.exmemregwr(exmemregwrout),
                                   .idexrs(idexrsout),
                                   .idexrt(idexrtout),
                                   .memwbregwr(memwbregwrout),
+                                  .ifidrt(ifidinsout[20:16]),
                                   .idexmemwr(idexmemwrout),
                                   .memwbregmuxout(regwraddrins),
                                   .exmemrt(exmemrtout),
@@ -551,7 +567,8 @@ forwardingunit forwardingunitins (.exmemregwr(exmemregwrout),
                                   .aluforward1(foraluforward1),
                                   .aluforward2(foraluforward2),
                                   .memdata(formemdata),
-                                  .memdata2(formemdata2));
+                                  .memdata2(formemdata2),
+                                  .regdata2(forregdata2));
 
 
 
