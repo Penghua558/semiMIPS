@@ -2,9 +2,11 @@
 * File Name: memreg.v
 * Function: This is a group of registers contain all control signals during
 * MEMory access stage, namely MemWr, MemRd, BBne, BBeq, BBlez, BBgtz, Jump.
+* flush pin is to zero all control signals, it is synchronous, active HIGH.
 */
 
 module memreg ( input wire clk,
+                input wire flush,
                input wire memwrin,
                input wire memrdin,
                input wire bbnein,
@@ -34,13 +36,23 @@ assign jumpout = jump;
 
 // write data
 always @(posedge clk) begin
-    memwr <= memwrin;
-    memrd <= memrdin;
-    bbne <= bbnein;
-    bbeq <= bbeqin;
-    bblez <= bbeqin;
-    bbgtz <= bbgtzin;
-    jump <= jumpin;
+    if (flush == 1'b1) begin
+        memwr <= 'b0;
+        memrd <= 'b0;
+        bbne <= 'b0;
+        bbeq <= 'b0;
+        bblez <= 'b0;
+        bbgtz <= 'b0;
+        jump <= 'b0;
+    end else begin
+        memwr <= memwrin;
+        memrd <= memrdin;
+        bbne <= bbnein;
+        bbeq <= bbeqin;
+        bblez <= bbeqin;
+        bbgtz <= bbgtzin;
+        jump <= jumpin;
+    end
 end
 
 endmodule

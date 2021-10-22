@@ -31,6 +31,7 @@
 `include "./MUX/MemDataMUX/memdatamux.v"
 `include "./HazardDetectionUnit/hazarddetectionunit.v"
 `include "./ForwardingUnit/forwardingunit.v"
+`include "./ControlHazardUnit/ctrlhazardunit.v"
 
 module mipspipeline( input wire clk,
                        input wire pcclr,
@@ -96,9 +97,13 @@ wire [IFIDAWIDTH-1:0] ifidpcnextout;
 // this signal is controled by Hazard Detection Unit
 wire hazifidregwr;
 
+// this signal is controled by Control Hazard Unit
+wire chazifidflush;
+
 // IF/ID pipeline register instance
 ifidreg #(.INSWIDTH(IFIDINSWIDTH), .AWIDTH(IFIDAWIDTH)) 
     ifidregins (.clk(clk),
+                .flush(chazifidflush),
                 .insin(insmemins),
                 .pcnextin(pcdata_out_next),
                 .insout(ifidinsout),
@@ -192,6 +197,9 @@ wire [IDEXAWIDTH-1:0] idexjmpaddrout;
 wire [IDEXAWIDTH-1:0] idexpcnextout;
 wire [31:0] idexinsout;
 
+// this signal is controled by Control Hazard Unit
+wire chazidexflush;
+
 // branch address and jump address calculation
 assign idexbranaddrin = (exdout << 2) + ifidpcnextout;
 assign idexjmpaddrin = {ifidpcnextout[31:28], ifidinsout[25:0], 2'b00};
@@ -199,6 +207,7 @@ assign idexjmpaddrin = {ifidpcnextout[31:28], ifidinsout[25:0], 2'b00};
 
 idexreg #(.DWIDTH(IDEXDWIDTH), .AWIDTH(IDEXAWIDTH))
     idexregins (.clk(clk),
+                .flush(chazidexflush),
                 .alualtsrcin(idexalualtsrcin),
                 .alusrcin(idexalusrcin),
                 .regdstin(idexregdstin),
@@ -398,6 +407,9 @@ wire [1:0] exmemmemtoregout;
 wire exmemregwrout;
 wire exmemfinout;
 
+// this signal is controled by Control Hazard Unit
+wire chazexmemflush;
+
 wire exmemzeroout, exmemnegativeout, exmemoverflowout;
 wire [4:0] exmemregdstmuxout;
 wire [31:0] exmemregdata2out;
@@ -408,6 +420,7 @@ wire [31:0] exmempcnextout;
 wire [31:0] exmeminsout;
 
 exmemreg exmemregins (.clk(clk),
+                      .flush(chazexmemflush),
                       .memwrin(idexmemwrout),
                       .memrdin(idexmemrdout),
                       .bbnein(idexbbneout),
@@ -596,5 +609,11 @@ hazarddetectionunit hazarddetectionunitins (.idexrt(idexrtout),
                                             .pcen(hazpcen),
                                             .ctrlsig(hazctrlsig),
                                             .ifidregwr(hazifidregwr));
+
+// Control Hazard Unit instance
+ctrlhazardunit ctrlhazardunitins ( .pcload(pcload),
+                                   .ifidflush(chazifidflush),
+                                   .idexflush(chazidexflush),
+                                   .exmemflush(chazexmemflush) );
 
 endmodule

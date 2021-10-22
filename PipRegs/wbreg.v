@@ -2,9 +2,11 @@
 * File Name: wbreg.v
 * Function: This is a group of registers contain all control signals during
 * Write Back access stage, namely MemtoReg[1:0], RegWr, Fin
+* flush pin is to zero all control signals, it is synchronous, active HIGH.
 */
 
 module wbreg ( input wire clk,
+               input wire flush,
                input wire [1:0] memtoregin,
                input wire regwrin, 
                input wire finin,
@@ -25,9 +27,15 @@ assign finout = fin;
 
 // write data
 always @(posedge clk) begin
-    memtoreg <= memtoregin;
-    regwr <= regwrin;
-    fin <= finin;
+    if (flush == 1'b1) begin
+        memtoreg <= 'b0;
+        regwr <= 'b0;
+        fin <= 'b0;
+    end else begin
+        memtoreg <= memtoregin;
+        regwr <= regwrin;
+        fin <= finin;
+    end
 end
 
 endmodule

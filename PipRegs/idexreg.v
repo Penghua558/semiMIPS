@@ -4,13 +4,15 @@
 * MEM register, EX register, register file data output 1&2, SignedExtend
 * module output, funct code field, Rt field, Rs field, Rd field, PC+4 field,
 * branch address field and jump address field, instruction.
+* flush pin is to zero all control signals and instruction field, it is 
+* synchronous, active HIGH.
 */
 
 /* `include "./wbreg.v" */
 /* `include "./memreg.v" */
 /* `include "./exreg.v" */
 
-module idexreg ( clk, alualtsrcin, alusrcin, regdstin, aluopin, 
+module idexreg ( clk, flush, alualtsrcin, alusrcin, regdstin, aluopin, 
                 alualtsrcout, alusrcout, regdstout, aluopout,
                 memwrin, memrdin, bbnein, bbeqin, bblezin, bbgtzin,
                 jumpin, 
@@ -26,6 +28,7 @@ parameter DWIDTH = 32;
 parameter AWIDTH = 32;
 
 input wire clk;
+input wire flush;
 input wire alualtsrcin;
 input wire [1:0] alusrcin;
 input wire [1:0] regdstin;
@@ -66,12 +69,12 @@ output wire finout;
 input wire [31:0] insin;
 output reg [31:0] insout;
 
-wbreg wbregins (clk, memtoregin, regwrin, finin, 
+wbreg wbregins (clk, flush, memtoregin, regwrin, finin, 
                 memtoregout, regwrout, finout);
-memreg memregins (clk, memwrin, memrdin, bbnein, bbeqin, bblezin,
+memreg memregins (clk, flush, memwrin, memrdin, bbnein, bbeqin, bblezin,
                     bbgtzin, jumpin, memwrout, memrdout, bbneout,
                     bbeqout, bblezout, bbgtzout, jumpout);
-exreg exregins (clk, alualtsrcin, alusrcin, regdstin, aluopin,
+exreg exregins (clk, flush, alualtsrcin, alusrcin, regdstin, aluopin,
                 alualtsrcout, alusrcout, regdstout, aluopout);
 
 // memory
@@ -142,7 +145,12 @@ always @(posedge clk) begin
     pcnext <= pcnextin;
     branaddr <= branaddrin;
     jmpaddr <= jmpaddrin;
-    ins <= insin;
+
+    if (flush == 1'b1) begin
+        ins <= 'b0;
+    end else begin
+        ins <= insin;
+    end
 end
 
 endmodule

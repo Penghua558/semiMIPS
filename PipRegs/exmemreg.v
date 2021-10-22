@@ -4,12 +4,15 @@
 * MEM register, ALU result, zero flag, negative flag, overflow flag, 
 * RegDstMUX output, register file data output 2, branch address, jump
 * address, Rt field, PC+4, instruction.
+* flush pin is to zero all control signals and instruction field, it is
+* synchronous, active HIGH.
 */
 
 /* `include "./wbreg.v" */
 /* `include "./memreg.v" */
 
-module exmemreg ( clk, memwrin, memrdin, bbnein, bbeqin, bblezin, bbgtzin,
+module exmemreg ( clk, flush, memwrin, memrdin, bbnein, bbeqin, bblezin, 
+                    bbgtzin,
                     jumpin,
                     memwrout, memrdout, bbneout, bbeqout, bblezout,
                     bbgtzout, jumpout,
@@ -24,7 +27,8 @@ module exmemreg ( clk, memwrin, memrdin, bbnein, bbeqin, bblezin, bbgtzin,
 parameter AWIDTH = 32;
 parameter DWIDTH = 32;
 
-input wire clk, memwrin, memrdin, bbnein, bbeqin, bblezin, bbgtzin, jumpin;
+input wire clk, flush, memwrin, memrdin, bbnein, bbeqin, bblezin;
+input wire bbgtzin, jumpin;
 output wire memwrout, memrdout, bbneout, bbeqout, bblezout, bbgtzout;
 output wire jumpout;
 input wire [1:0] memtoregin;
@@ -52,9 +56,9 @@ output wire finout;
 input wire [31:0] insin;
 output reg [31:0] insout;
 
-wbreg wbregins (clk, memtoregin, regwrin, finin,
+wbreg wbregins (clk, flush, memtoregin, regwrin, finin,
                 memtoregout, regwrout, finout);
-memreg memregins (clk, memwrin, memrdin, bbnein, bbeqin, bblezin, 
+memreg memregins (clk, flush, memwrin, memrdin, bbnein, bbeqin, bblezin, 
                     bbgtzin, jumpin,
                     memwrout, memrdout, bbneout, bbeqout, bblezout,
                     bbgtzout, jumpout);
@@ -125,7 +129,12 @@ always @(posedge clk) begin
     jmpaddr <= jmpaddrin;
     rt <= rtin;
     pcnext <= pcnextin;
-    ins <= insin;
+
+    if (fluh == 1'b1) begin
+        ins <= 'b0;
+    end else begin
+        ins <= insin;
+    end
 end
 
 endmodule

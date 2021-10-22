@@ -138,7 +138,7 @@ always @(opcode) begin
         `LW: assctrlsig(20'b011010101_00000_1_000_0_0);
         `SW: assctrlsig(20'bxx0011xxx_00000_1_000_0_0);
         `FIN: assctrlsig(20'bxx0xx0xxx_00000_0_xxx_x_1);
-        default: assctrlsig('b0); // nop, PC is also been disabled
+        default: assctrlsig(20'b000000000_00000_1_000_0_0); // nop, PC is also been disabled
     endcase
 end
 
