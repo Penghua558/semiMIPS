@@ -2,4 +2,4 @@
 -y ./COUNTER
 -y ./ALUCtrl
 -y ./PipRegs
-+incdir+./RegFile+./ALUCtrl+./ALU+./BranchCtrl+./CtrlUnit+./ForwardingUnit+./HazardDetectionUnit+./Unstalling+
++incdir+./RegFile+./ALUCtrl+./ALU+./BranchCtrl+./CtrlUnit+./ForwardingUnit+./HazardDetectionUnit+./Unstalling+./ControlHazardUnit
