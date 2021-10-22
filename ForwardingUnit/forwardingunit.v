@@ -57,7 +57,7 @@ always @(*) begin
         !(exmemregwr && (exmemregmuxout != 0) &&
         (exmemregmuxout == idexrt)) &&
         (memwbregmuxout == idexrt) &&
-        (idexins == 6'h00)) begin
+        (idexins[31:26] == 6'h00)) begin
         aluforward2 = 2'b01;
     end
 
