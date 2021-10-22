@@ -130,7 +130,7 @@ always @(posedge clk) begin
     rt <= rtin;
     pcnext <= pcnextin;
 
-    if (fluh == 1'b1) begin
+    if (flush == 1'b1) begin
         ins <= 'b0;
     end else begin
         ins <= insin;

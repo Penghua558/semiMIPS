@@ -36,7 +36,7 @@ output wire finout;
 input wire [31:0] insin;
 output reg [31:0] insout;
 
-wbreg wbregins (clk, memtoregin, regwrin, finin,
+wbreg wbregins (clk, 1'b0, memtoregin, regwrin, finin,
                 memtoregout, regwrout, finout);
 
 // memory

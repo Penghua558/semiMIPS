@@ -23,7 +23,7 @@ initial begin
     $display("time\t current PC address\t Instruction\n");
     $monitor("%g\t %b\t %b\t", $time, dut.pcdata_out, dut.insmemins);
     $display("reading memory file...");
-    $readmemb("./TestMemoryFiles/pipstalling.lst", dut.insmem.mem);
+    $readmemb("./TestMemoryFiles/pipctrlhaz.lst", dut.insmem.mem);
     #1 pcclr = 1; // start running program
     $display("running program...");
     // output memory data to file
@@ -36,6 +36,11 @@ initial begin
     $display("%g\t program finished\n", $time);
     #8 $finish;
 end
+
+// if program is not finished yet, we forcely terminate the simulation
+/* always begin */
+/*     #200 $finish; */
+/* end */
 
 
 // DUT, device under test 

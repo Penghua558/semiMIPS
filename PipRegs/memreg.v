@@ -49,7 +49,7 @@ always @(posedge clk) begin
         memrd <= memrdin;
         bbne <= bbnein;
         bbeq <= bbeqin;
-        bblez <= bbeqin;
+        bblez <= bblezin;
         bbgtz <= bbgtzin;
         jump <= jumpin;
     end

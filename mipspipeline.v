@@ -160,6 +160,22 @@ memdatamux regdata2muxins (.memdata(forregdata2),
                            .out(regdata2muxout));
 
 
+
+// MemDataMUX instance 4
+// this instance is placed right before ID/EX pipeline register to
+// forwarding WB stage's write data to register's data1 output
+
+// this is controled by Forwarding Unit
+wire forregdata1;
+
+wire [31:0] regdata1muxout;
+
+memdatamux regdata1muxins (.memdata(forregdata1),
+                           .regdata(regdout1ins),
+                           .dmdata(regdinins),
+                           .out(regdata1muxout));
+
+
 // ID/EX pipeline register instance 
 parameter IDEXDWIDTH = REGDWIDTH;
 parameter IDEXAWIDTH = IFIDAWIDTH;
@@ -236,7 +252,7 @@ idexreg #(.DWIDTH(IDEXDWIDTH), .AWIDTH(IDEXAWIDTH))
                 .memtoregout(idexmemtoregout),
                 .regwrout(idexregwrout),
                 .finout(idexfinout),
-                .regdata1in(regdout1ins),
+                .regdata1in(regdata1muxout),
                 .regdata2in(regdata2muxout),
                 .signexin(exdout),
                 .functin(ifidinsout[5:0]),
@@ -423,7 +439,8 @@ exmemreg exmemregins (.clk(clk),
                       .flush(chazexmemflush),
                       .memwrin(idexmemwrout),
                       .memrdin(idexmemrdout),
-                      .bbnein(idexbbneout),
+                      .bbnein(idexbbnein),
+                      .bbeqin(idexbbeqin),
                       .bblezin(idexbblezout),
                       .bbgtzin(idexbbgtzout),
                       .jumpin(idexjumpout),
@@ -586,6 +603,7 @@ forwardingunit forwardingunitins (.exmemregwr(exmemregwrout),
                                   .idexrt(idexrtout),
                                   .memwbregwr(memwbregwrout),
                                   .ifidrt(ifidinsout[20:16]),
+                                  .ifidrs(ifidinsout[25:21]),
                                   .idexmemwr(idexmemwrout),
                                   .memwbregmuxout(regwraddrins),
                                   .exmemrt(exmemrtout),
@@ -597,6 +615,7 @@ forwardingunit forwardingunitins (.exmemregwr(exmemregwrout),
                                   .aluforward2(foraluforward2),
                                   .memdata(formemdata),
                                   .memdata2(formemdata2),
+                                  .regdata1(forregdata1),
                                   .regdata2(forregdata2));
 
 
