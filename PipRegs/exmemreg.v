@@ -128,13 +128,13 @@ always @(posedge clk) begin
     branaddr <= branaddrin;
     jmpaddr <= jmpaddrin;
     rt <= rtin;
-    pcnext <= pcnextin;
 
     if (flush == 1'b1) begin
         ins <= 'b0;
+        pcnext <= 'b0;
     end else begin
         ins <= insin;
+        pcnext <= pcnextin;
     end
 end
-
 endmodule

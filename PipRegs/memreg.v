@@ -2,7 +2,7 @@
 * File Name: memreg.v
 * Function: This is a group of registers contain all control signals during
 * MEMory access stage, namely MemWr, MemRd, BBne, BBeq, BBlez, BBgtz, Jump.
-* flush pin is to zero all control signals, it is synchronous, active HIGH.
+* flush pin is to zero all control signals, it is asynchronous, active HIGH.
 */
 
 module memreg ( input wire clk,

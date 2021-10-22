@@ -37,5 +37,4 @@ always @(posedge clk) begin
         fin <= finin;
     end
 end
-
 endmodule

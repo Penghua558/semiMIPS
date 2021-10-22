@@ -138,19 +138,20 @@ always @(posedge clk) begin
     regdata1 <= regdata1in;
     regdata2 <= regdata2in;
     signex <= signexin;
-    funct <= functin;
     rt <= rtin;
     rs <= rsin;
     rd <= rdin;
-    pcnext <= pcnextin;
     branaddr <= branaddrin;
     jmpaddr <= jmpaddrin;
 
     if (flush == 1'b1) begin
         ins <= 'b0;
+        pcnext <= 'b0;
+        funct <= 'b0;
     end else begin
         ins <= insin;
+        pcnext <= pcnextin;
+        funct <= functin;
     end
 end
-
 endmodule

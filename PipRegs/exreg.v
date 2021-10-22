@@ -43,5 +43,4 @@ always @(posedge clk) begin
         aluop <= aluopin;
     end
 end
-
 endmodule

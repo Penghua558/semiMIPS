@@ -3,11 +3,12 @@
 // situation. The data hazard will be test here
 // is be demostrated as a series of instructions.
 // the content of mem[1] should be 1011010 (90). the content of mem[4] should
-// be 11000 (20).
+// be 10100 (20).
 001000_00000_00011_0000000000011000 // addi $3 $zero 24, store 24 into $3
 001000_00000_00010_0000000000010100 // addi $2 $zero 20, store 20 into $2
-001000_00000_00100_0000000000001000 // addi $4 $zero 0, zeros $4's content
+001000_00000_00100_0000000000000000 // addi $4 $zero 0, zeros $4's content
 000100_00011_00010_0000000000010010 // beq $3 $2 18, if $3 = $2, jump to 12+4+72
+//000101_00011_00010_0000000000010010 // bne $3 $2 18, if $3 = $2, jump to 12+4+72
 000000_00011_00100_00100_00000_100000 // add $4 $3 $4, $4=$4+$3
 001000_00011_00011_1111111111111111 // addi $3 $3-1, $3=$3-1
 000010_00000000000000000000000011 // jump 3, go to 4th instruction
