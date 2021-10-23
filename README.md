@@ -6,7 +6,8 @@ is 5-stages pipelined implementaion.
 ## Contents
 1. [Contents](#contents)<br>
 2. [Resources](#resources)
-3. [How to use it](#how-to-use-it)
+3. [How to Use Tt](#how-to-use-it)
+4. [Supported Instructions](#supported-instructions)
 
 
 ## Resources
@@ -15,7 +16,7 @@ The book I used during the development is
 During the development of ISA I used this [website](https://en.wikibooks.org/wiki/MIPS_Assembly/Instruction_Formats) to help me to assign opcodes to each
 instruction.
 
-## How to use it
+## How to Use It
 You need to have`icarus verilog` installed on your machine, this project is entirely complied and simulated via `icarus verilog`.<br>
 After cloning the repository into your local machine, `cd` into the root directory of the repository, then<br>
 **for single clocked implementation CPU** execute:
@@ -38,3 +39,9 @@ want to change the program the CPU is running, open testbench file either `mipss
 are dealing with, modified the code line below to match the program filename that you want to run:
 
     $readmemb("./TestMemoryFiles/pipctrlhaz.lst", dut.insmem.mem);
+then recomplie the testbench file. The ISA and its opcode used here is identical with MIPS ISA, except some instructions are not implemented, including
+floating point related instructions, etc.
+
+## Supported Instructions
+The details about supported instructions and their correspoding opcode field and funct code field can be found in files `CtrlUnit/opcode.v` and `ALUCtrl/funct.v`
+.
