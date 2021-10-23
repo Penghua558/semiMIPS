@@ -159,4 +159,19 @@ Aside from this, IF/ID, ID/EX and EX/MEM has flush pins, which can zeros their c
 is useful when we need to discard ongoing operations or stalling CPU. IF/ID also has a write control pin, it is used to preserve its content.<br>
 
 ### Forwarding
-The main issue to develop pipeline implementation is to deal with hazards, in this project I used forwarding technique to try to solve data hazard.
+The main issue to develop pipeline implementation is to deal with hazards, in this project I used forwarding technique to try to solve data hazard. Basically 
+speaking, at normal running flow the result of an instruction will only be available after its WB stage, but sometimes other instructions demands the unavailable
+results early, if the result is already ready at other stages then you can use forwarding to bypass the rest unfinished stage to put the ready result early into
+use.<br>
+In `TestMemoryFiles` there are 3 memory files are aim to test its forwarding capacity, I don't know how well those 3 testing programs covers the data hazard
+situation, but at least current forwarding unit deployed in the CPU can solve those data hazards.<br>
+
+### Stalling
+There are one type of data hazard that forwarding can not solve, such situation is usually what the following instruction demand is not ready yet, for example,
+a `lw` instruction followed by a `add` instruction, while the operand needed in `add` instruction is the same as `lw` instruction is trying to writing. Under such
+circumstance, I use the stalling approach to solve it, when such data hazard is detected, CPU stalls `add` instruction to make it *wait* a clock cycle so that
+the operand required can be ready in time.<br> 
+By stalling, it simply means CPU repeats the same process, to achieve it I disable PC to make it stop counting so
+at next clocl cycle CPU will process the same instruction, and deassert IF/ID's write pin so their instruction field can be preserved, to prevent the next 
+instuction to be processed further, ID/EX's control signals field will be inserted a `nop` operation which in my case is basically a bunch of zeros so there will
+be one stage that does nothing at all.
