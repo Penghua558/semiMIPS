@@ -149,7 +149,14 @@ The pipeline I implemented here has 5 stages, namely IF (instruction fetch), ID(
 are divided by 4 pipeline reigisters, their main job is to store critical instructon related information from previous clock cycle to make sure the instruction
 can still be executed properly at next cycle at different pipeline stage. The 4 pipeline registers are IF/ID (placed between IF stage and ID stage), ID/EX (
 placed between ID stage and EX stage), EX/MEM (placed between EX stage and MEM stage) and MEM/WB (placed between MEM stage and WB stage).<br>
+
 Different pipeline register holds different informations, for example, IF/ID holds instruction and the next PC address, since ID stage only requires pipeline to
 fetch correct instruction so IF/ID only need to hold 2 datas. On the other hand, ID/EX needs to hold the most data fields among 4 pipeline registers, during ID
 stage, main control unit will decode the instruction obtained from IF/ID, so ID/EX need to store decoded information, aka, control signals, other than that,
-ID/EX also need to store register file's read data output, Rt, Rs and Rd field, etc.
+ID/EX also need to store register file's read data output, Rt, Rs and Rd field, etc.<br>
+
+Aside from this, IF/ID, ID/EX and EX/MEM has flush pins, which can zeros their control signal fields and instruction fields to produce a `nop` operation, this 
+is useful when we need to discard ongoing operations or stalling CPU. IF/ID also has a write control pin, it is used to preserve its content.<br>
+
+### Forwarding
+The main issue to develop pipeline implementation is to deal with hazards, in this project I used forwarding technique to try to solve data hazard.
