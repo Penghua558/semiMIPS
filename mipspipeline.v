@@ -519,7 +519,7 @@ wire [1:0] branchctrlout;
 branchctrl branctrlins (.zero(exmemzeroout),
                         .negative(exmemnegativeout),
                         .overflow(exmemoverflowout),
-                        .jump(exmemjumpout),
+                        .jump(idexjumpin),
                         .branchbeq(exmembbeqout),
                         .branchbne(exmembbneout),
                         .branchblez(exmembblezout),
@@ -529,7 +529,7 @@ branchctrl branctrlins (.zero(exmemzeroout),
 
 
 // PCAddrMUX instance
-pcaddrmux pcaddrmuxins (.jumpaddr(exmemjmpaddrout),
+pcaddrmux pcaddrmuxins (.jumpaddr(idexjmpaddrin),
                         .branchaddr(exmembranaddrout),
                         .branchcode(branchctrlout),
                         .pcload(pcload),
@@ -631,6 +631,7 @@ hazarddetectionunit hazarddetectionunitins (.idexrt(idexrtout),
 
 // Control Hazard Unit instance
 ctrlhazardunit ctrlhazardunitins ( .pcload(pcload),
+                                   .jump(idexjumpin),
                                    .ifidflush(chazifidflush),
                                    .idexflush(chazidexflush),
                                    .exmemflush(chazexmemflush) );

@@ -9,6 +9,7 @@
 */
 
 module ctrlhazardunit ( input wire pcload, 
+                        input wire jump,
                         output reg ifidflush,
                         output reg idexflush,
                         output reg exmemflush );
@@ -22,9 +23,16 @@ end
 always @(pcload) begin
     if (pcload == 1'b1) begin
         // branch is taken, discard previous operations
-        ifidflush = 1;
-        idexflush = 1;
-        exmemflush = 1;
+        if (jump == 1'b1) begin
+            // jump related instruction can be executed early during ID stage
+            ifidflush = 1;
+            idexflush = 0;
+            exmemflush = 0;
+        end else begin
+            ifidflush = 1;
+            idexflush = 1;
+            exmemflush = 1;
+        end
     end else begin
         // branch is untaken
         ifidflush = 0;
