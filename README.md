@@ -171,7 +171,19 @@ There are one type of data hazard that forwarding can not solve, such situation 
 a `lw` instruction followed by a `add` instruction, while the operand needed in `add` instruction is the same as `lw` instruction is trying to writing. Under such
 circumstance, I use the stalling approach to solve it, when such data hazard is detected, CPU stalls `add` instruction to make it *wait* a clock cycle so that
 the operand required can be ready in time.<br> 
+
 By stalling, it simply means CPU repeats the same process, to achieve it I disable PC to make it stop counting so
 at next clocl cycle CPU will process the same instruction, and deassert IF/ID's write pin so their instruction field can be preserved, to prevent the next 
 instuction to be processed further, ID/EX's control signals field will be inserted a `nop` operation which in my case is basically a bunch of zeros so there will
 be one stage that does nothing at all.
+
+### Control Hazard
+Another type of hazard that must be dealt with to make it a truly pipelined CPU/computer rather than a pipelined calculator is control hazard. When the pipeline
+encounter a branch related instruction, since the test result will not be immediately ready so the CPU need to decide to take the branch or untake the branch 
+at next clock cycle or rather just stall the pipeline until the result is available to make decision. I chose to predict that the branch will always be untaken,
+in other words CPU will always execute instructions following the branch instruction.<br>
+
+If branch test result later is revealed as untaken then nothing will happen, but if the test result is the branch should be taken, then what instructions the 
+CPU executed during the result calculation period should be completely discarded to remove their effects, the approach to discard operation is similar with 
+the approach to stalling, but the difference is instead only zeros IF/ID, you need to flush IF/ID, ID/EX and EX/MEM, because the branch test result is not 
+avaible until MEM stage, meaning 3 wasted instructions have been put through pipeline, so we need to flush first 3 pipeline registers to remove their effects.<br>
