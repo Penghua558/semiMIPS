@@ -77,9 +77,34 @@ It contains 2 different PCs, `counter.v` is for single clocked implementaion,
 `counterpip.v` is for pipeline implementaion, the only difference is pipelien
 PC has an extra enable pin which is controled by Hazard Detection Unit, so
 when such data hazard happens that forwarding can not solve it, then the unit can
-disabling PC by deasserting PC's enable pin.
+disabling PC by deasserting PC's enable pin.<br>
 
 directory `CtrlUnit/`<br>
 It contains main control unit, the module file has details about what control 
 signals the CPU has and what does each one of them do. File `opcode.v` contains
-macros of instructions' opcode definition.
+macros of instructions' opcode definition.<br>
+
+
+directory `ForwardingUnit/`<br>
+It is only deployed in pipeline implementation. It detects data hazard and 
+uses forwarding to resolve data conflicts.<br>
+
+directory `HazardDetectionUnit/`<br>
+It is only deployed in pipeline implementation. It detects data hazard which 
+can not be solved by forwarding and insert bubble (stalling) to try to resolve
+it.<br>
+
+directory `MUX/`<br>
+It contains all the muxes that are used in this project, by controlling different
+control signals you can control different mux to select different data input.
+It is used to achieve compatible datapath with various instructions and 
+forwarding datapath.<br>
+
+directory `PipRegs/`<br>
+It is only deployed in pipeline implementation. It contanis 4 pipeline registers.
+<br>
+
+directory `SignedExtend/`<br>
+The module in here extends a 16 bit data to 32 bit data while preseving its sign.
+<br>
+
