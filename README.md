@@ -59,4 +59,27 @@ directory `ALUCtrl/`<br>
 the directory contains module that directly controls ALU, it receives control
 signals from main control unit and funct field of instruction then decode them
 to tell ALU exactly which operation to choose. File `funct.v` contains macros 
-about
+about funct field code and its corresponding R-type arithmetic operation.<br>
+
+directory `BranchCtrl/`<br>
+the module in here controls when to load a new PC address and which PC address
+should be loaded into PC. It receives flags from ALU and several jump and branch
+related control signals from main control unit, then it delivers its output to 
+a MUX to select correct PC address and asserting PC load signal if necessary.<br>
+
+directory `ControlHazardUnit/`<br>
+It is only been deployed in pipeline implementaion, like the name suggests, 
+it contains module Control Hazard Unit, whose main job
+is to detect control hazard and resolve it.<br>
+
+directory `COUNTER/`<br>
+It contains 2 different PCs, `counter.v` is for single clocked implementaion,
+`counterpip.v` is for pipeline implementaion, the only difference is pipelien
+PC has an extra enable pin which is controled by Hazard Detection Unit, so
+when such data hazard happens that forwarding can not solve it, then the unit can
+disabling PC by deasserting PC's enable pin.
+
+directory `CtrlUnit/`<br>
+It contains main control unit, the module file has details about what control 
+signals the CPU has and what does each one of them do. File `opcode.v` contains
+macros of instructions' opcode definition.
