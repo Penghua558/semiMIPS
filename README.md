@@ -6,7 +6,7 @@ is 5-stages pipelined implementaion.
 ## Contents
 1. [Contents](#contents)<br>
 2. [Resources](#resources)
-3. [How to Use Tt](#how-to-use-it)
+3. [How to Use It](#how-to-use-it)
 4. [Supported Instructions](#supported-instructions)
 5. [Repository Files & Directories Explaination](#repository-files--directories-explaination)
 6. [Pipeline Implementation Key Parts](#pipeline-implementation-key-parts)
