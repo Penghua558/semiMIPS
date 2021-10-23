@@ -127,4 +127,14 @@ the resolution is this module, which will ensure PC to keep running during the
 file `datapath_pipelining.drawio` and `datapath_singleclock.drawio`<br>
 They are vectored image files that represents pipeline and single clocked 
 datapath respectively, you can view and edit them on 
-[diagrams](https://app.diagrams.net/).<br>
+[diagrams](https://app.diagrams.net/), it's an online and free vector image
+editor.<br>
+
+file `mipspipeline_tb.v` and `mipspipeline.v`<br>
+They are the testbench file and top module file for pipeline implementation.<br>
+
+file `mipssingleclk_tb.v` and `mipssingleclk.v`<br>
+They are the testbench file and top module file for single clock implementation.
+<br>
+
+file `datamem.lst`<br>
