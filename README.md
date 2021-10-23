@@ -32,7 +32,7 @@ To simulate models, execute:
 After the simulation completed, a `.vcd` file will be generated in the root of the repository which can be used by a wave viewr program to inspect waveforms of
 the simulation, depends on the implementation you chose to complie, the file name of `.vcd` file is either `testsingleclk.vcp` or `testpipeline.vcp`. Along side
 with the `.vcd` file, there will also be a memory file named `datamem.lst`, which contains memory content of the selected addresses after the program is finished,
-at default testbench only prints the contents of `@4, @16 and @64` into the memory file.<br>
+at default testbench only prints the contents of `@4, @16` and `@64` into the memory file.<br>
 
 Directory `TestMemoryFiles/` contains all the programs which was written in machine lanaguage that I used during testing. Their format used essentially
 memory files that Verilog can recognize, during simulation, testbench will load one of them into CPU's instruction memory then start executing program. So if you
@@ -107,4 +107,20 @@ It is only deployed in pipeline implementation. It contanis 4 pipeline registers
 directory `SignedExtend/`<br>
 The module in here extends a 16 bit data to 32 bit data while preseving its sign.
 <br>
+
+directory `SRAM/`<br>
+The SRAM module here is both been used as instruction memory and data memory.<br>
+
+directroy `TestMemoryFiles/`<br>
+It contains programs that can be run by the CPU, they are stored in memory file
+format which Verilog can recognize.<br>
+
+directory `Unstalling/`<br>
+It is only deployed in pipeline implementation. 
+The module here is placed between PC and main control unit, because ID stage is
+at 2nd clock cycle of an instrcution lifetime, so at the very start of program
+there will be no valid PC enable signal to feed into PC to keep PC running, in
+a result the program will suffer stalling forever at the very start of program,
+the resolution is this module, which will ensure PC to keep running during the
+1st instruction lifetime.<br>
 
