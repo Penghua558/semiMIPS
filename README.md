@@ -187,3 +187,9 @@ If branch test result later is revealed as untaken then nothing will happen, but
 CPU executed during the result calculation period should be completely discarded to remove their effects, the approach to discard operation is similar with 
 the approach to stalling, but the difference is instead only zeros IF/ID, you need to flush IF/ID, ID/EX and EX/MEM, because the branch test result is not 
 avaible until MEM stage, meaning 3 wasted instructions have been put through pipeline, so we need to flush first 3 pipeline registers to remove their effects.<br>
+
+Thus by doing so, every misprediction will cost 3 additional clock cycles, and it is true with jump related instruction, because 
+both jump and branch instruction issue PC address load at the same stage, which makes it seems like we can improve jump instruction performance, unlike branch
+instruction jump instrucion does not need to test, and both branch address and jump address can be made available during ID stage, so instead let the jump
+control signal from EX/MEM to control jump I make the jump control signal directly from main control unit to control jump, so when a jump instruction is detected
+, it can make the jump as early as at ID stage, which will only cost 1 additional clock cycle.
