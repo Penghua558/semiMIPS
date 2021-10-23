@@ -8,6 +8,7 @@ is 5-stages pipelined implementaion.
 2. [Resources](#resources)
 3. [How to Use Tt](#how-to-use-it)
 4. [Supported Instructions](#supported-instructions)
+5. [Repository Files & Directories Explain](#repository-files-directories-explain)
 
 
 ## Resources
@@ -44,4 +45,7 @@ floating point related instructions, etc.
 
 ## Supported Instructions
 The details about supported instructions and their correspoding opcode field and funct code field can be found in files `CtrlUnit/opcode.v` and `ALUCtrl/funct.v`
-.
+respectively, noted some of them is not supported by my CPU's current datapath even though they are list in files, those are not supported has comment beside 
+them with content that basically saying "it's not supported" or something like that.
+
+## Repository Files & Directories Explain
