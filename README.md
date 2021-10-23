@@ -16,7 +16,25 @@ During the development of ISA I used this [website](https://en.wikibooks.org/wik
 instruction.
 
 ## How to use it
-You need to install `icarus verilog` installed on your machine, this project is entirely complied and simulated via `icarus verilog`.<br>
+You need to have`icarus verilog` installed on your machine, this project is entirely complied and simulated via `icarus verilog`.<br>
 After cloning the repository into your local machine, `cd` into the root directory of the repository, then<br>
-**for single clocked implementaion CPU** execute:
-  iverilog -c -cmd_file_single
+**for single clocked implementation CPU** execute:
+
+    iverilog -c -cmd_file_singleclk -o <file output name>
+**for 5-stages pipelined  implementation CPU** execute:
+
+    iverilog -c -cmd_file_pipeline -o <file output name>
+To simulate models, execute:
+
+    vvp <file output name>
+After the simulation completed, a `.vcd` file will be generated in the root of the repository which can be used by a wave viewr program to inspect waveforms of
+the simulation, depends on the implementation you chose to complie, the file name of `.vcd` file is either `testsingleclk.vcp` or `testpipeline.vcp`. Along side
+with the `.vcd` file, there will also be a memory file named `datamem.lst`, which contains memory content of the selected addresses after the program is finished,
+at default testbench only prints the contents of `@4, @16 and @64` into the memory file.<br>
+
+Directory `TestMemoryFiles/` contains all the programs which was written in machine lanaguage that I used during testing. Their format used essentially
+memory files that Verilog can recognize, during simulation, testbench will load one of them into CPU's instruction memory then start executing program. So if you
+want to change the program the CPU is running, open testbench file either `mipssingleclk_tb.v` or `mipspipeline_tb.v`, which depends on which implementaion you
+are dealing with, modified the code line below to match the program filename that you want to run:
+
+    $readmemb("./TestMemoryFiles/pipctrlhaz.lst", dut.insmem.mem);
