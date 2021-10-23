@@ -8,7 +8,7 @@ is 5-stages pipelined implementaion.
 2. [Resources](#resources)
 3. [How to Use Tt](#how-to-use-it)
 4. [Supported Instructions](#supported-instructions)
-5. [Repository Files & Directories Explain](#repository-files-directories-explain)
+5. [Repository Files & Directories Explain](#repository-files--directories-explain)
 
 
 ## Resources
