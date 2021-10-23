@@ -124,3 +124,7 @@ a result the program will suffer stalling forever at the very start of program,
 the resolution is this module, which will ensure PC to keep running during the
 1st instruction lifetime.<br>
 
+file `datapath_pipelining.drawio` and `datapath_singleclock.drawio`<br>
+They are vectored image files that represents pipeline and single clocked 
+datapath respectively, you can view and edit them on 
+[diagrams](https://app.diagrams.net/).<br>
