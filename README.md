@@ -49,3 +49,14 @@ respectively, noted some of them is not supported by my CPU's current datapath e
 them with content that basically saying "it's not supported" or something like that.
 
 ## Repository Files & Directories Explain
+directory `ALU/`<br>
+the directory contains module file and its testbench file of component ALU, along 
+with its complie file `cmd_file`. File `aluopdef.v` contains ALU op macros, since
+ALU is not controled directly by main control unit here, rather it is directly
+controled by a small combo module to tell ALU which operation to choose.<br>
+
+directory `ALUCtrl/`<br>
+the directory contains module that directly controls ALU, it receives control
+signals from main control unit and funct field of instruction then decode them
+to tell ALU exactly which operation to choose. File `funct.v` contains macros 
+about
